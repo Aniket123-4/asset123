@@ -1,0 +1,51 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: var(--font-family);
+    font-weight: normal;
+    background: var(--surface-ground);
+    color: var(--text-color);
+    /* padding: 1rem; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* margin: 0px;
+    padding: 0px; */
+}
+
+.card {
+    background: var(--surface-card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust as needed */
+    width: 100px;  /* Adjust as needed */
+    margin: auto;  /* Centers the loader horizontally */
+  }
+  
+  /* Steering wheel image as background */
+  .steering-wheel {
+    width: 60px;  /* Size of the wheel */
+    height: 60px; /* Size of the wheel */
+    background-image: url("https://w7.pngwing.com/pngs/392/616/png-transparent-steering-wheel-car-cartoon-steering-wheel-cartoon-character-png-graphics-cartoons-thumbnail.png");
+    background-size: cover; /* Make the image fill the container */
+    background-repeat: no-repeat;
+    animation: spinWheel 1.3s linear infinite; /* Spinning animation */
+  }
+  
+  /* Keyframes for the spinning animation */
+  @keyframes spinWheel {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
