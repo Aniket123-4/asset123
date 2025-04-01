@@ -10,8 +10,8 @@ import useLocalStorage from "use-local-storage";
 import Typewriter from "../components/common/TypeWriter";
 // import Typewriter from "./LoginTypeWriter";
 import Divider from "@mui/material/Divider";
-import advPics from "../assets/images/headDoc.png";
-import logo from "../assets/images/Login.png";
+// import advPics from "../assets/images/headDoc.png";
+// import logo from "../assets/images/Login.png";
 import { Button, CircularProgress, Grid, Paper, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
@@ -29,7 +29,7 @@ function LoginPage() {
 
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
-  const timer = React.useRef<ReturnType<typeof setTimeout>>();
+  const timer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const [menu, setMenus] = useState<any>([]);
 
   useEffect(() => {
