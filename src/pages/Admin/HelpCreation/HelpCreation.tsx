@@ -171,46 +171,7 @@ export default function HelpCreation() {
          }
        }
        
-      // onSubmit: async (values) => {
-      //    try {
-      //       // Ensure menuTypeOptions (menu data) is available
-      //       if (!MenuTypeOptions || MenuTypeOptions.length === 0) {
-      //          toast.error("Menu data is not available.");
-      //          return;
-      //       }
-
-      //       // Convert menuTypeOptions back to original menu data format
-      //       const menuData = MenuTypeOptions.map((item: any) => item.originalData);
-
-      //       // Determine correct PageTitleId based on menu hierarchy
-      //       const computedPageTitleId =
-      //          values.PageTitleId === 0 || values.PageTitleId === -1
-      //             ? findRootParentId(values.PageTitleId, menuData)
-      //             : values.PageTitleId;
-
-      //       const requestData = {
-      //          ...values,
-      //          PageTitleId: computedPageTitleId, // Assign corrected PageTitleId
-      //          Type: values.Id !== -1 ? 2 : 1 // Type 2 = Update, Type 1 = Insert
-      //       };
-
-      //       const response = await api.post("HelpCreation", requestData);
-
-      //       if (response.data.success) {
-      //          toast.success(response.data.message);
-      //          setEditId(0);
-      //          formik.resetForm();
-      //         // fetchHelpCreations();
-      //       } else {
-      //          toast.error(response.data.message || "Failed to save/update data");
-      //       }
-      //    } catch (error: any) {
-      //       console.error("Error submitting form:", error);
-      //       toast.error(
-      //          error.response?.data?.message || "An error occurred while submitting"
-      //       );
-      //    }
-      // }
+  
    });
    const routeChangeEdit = (row: any) => {
       api.post("HelpCreation", {

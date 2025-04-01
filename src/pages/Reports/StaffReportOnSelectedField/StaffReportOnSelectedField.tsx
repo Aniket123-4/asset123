@@ -20,6 +20,7 @@ import {
    ListItemText,
    List,
    ListItem,
+   ListItemButton,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import Switch from "@mui/material/Switch";
@@ -44,7 +45,7 @@ import { jsPDF } from "jspdf";
 import * as XLSX from "xlsx";
 import "../../../index.css";
 import { getISTDate } from "../../../utils/Constant";
-import Logo from "../../../assets/images/KanpurLogo.png";
+
 
 interface MenuPermission {
    isAdd: boolean;
@@ -373,10 +374,9 @@ export default function StaffReportOnSelectedField() {
             {title}
          </Typography>
          <List sx={{ maxHeight: 300, overflow: "auto" }}>
-            {items.map((item) => (
-               <ListItem
+            {items.map((item:any) => (
+               <ListItemButton
                   key={item}
-                  button
                   onClick={() => handleToggleField(item)}
                   selected={!isInactive && activeFields.includes(item)}
                   sx={{
@@ -385,7 +385,7 @@ export default function StaffReportOnSelectedField() {
                   }}
                >
                   <ListItemText primary={item} />
-               </ListItem>
+               </ListItemButton>
             ))}
          </List>
       </Paper>
