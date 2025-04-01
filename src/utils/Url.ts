@@ -49,7 +49,7 @@ function Logout() {
   
   localStorage.clear();
   sessionStorage.clear();
- // toast.success("Token expired. Logging out...");
+  toast.success("Token expired. Logging out...");
   const navigate=useNavigate();
   navigate("/");
 }

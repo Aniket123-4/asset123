@@ -1,9 +1,6 @@
-
 import UserPermission from "../pages/Admin/UserPermission/UserPermission";
 import MenuCreate from "../pages/Admin/MenuCreate/MenuCreate";
-// import MenuMaster from "../pages/master/Menu/MenuMaster";
-// import MenuMasterAdd from "../pages/master/Menu/MenuMasterAdd";
-// import MenuMasterEdit from "../pages/master/Menu/MenuMasterEdit";
+
 import HomePage from "../pages/home/HomePage";
 import LoginPage from "../loginPage/LoginPage";
 import { RouteType } from "./config";
@@ -11,20 +8,35 @@ import HomeIcon from "@mui/icons-material/Home";
 import DashboardPageLayout from "../pages/master/MasterPageLayout";
 import DashboardIndex from "../pages/master/MasterPageIndex";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+
+
 import ZoneMaster from "../pages/master/ZoneMaster/ZoneMaster";
 import WardMaster from "../pages/master/WardMaster/WardMaster";
 import DepartmentMaster from "../pages/master/DepartmentMaster/DepartmentMaster";
+
 import StateMaster from "../pages/master/StateMaster/StateMaster";
+
 import CountryMaster from "../pages/master/CountryMaster/CountryMaster";
 import CityMaster from "../pages/master/CityMaster/CityMaster";
+
+
+
+
+
+// EditJobCard from "../pages/Inventory/JobWork/EditJobCard";
+
+
+
+
 import Organization from "../pages/Admin/Organization/Organization";
 import Roles from "../pages/Admin/Roles/Roles";
 
 
+
+
 import OrganizationEdit from "../pages/Admin/Organization/OrganizationEdit";
 import OrganizationAdd from "../pages/Admin/Organization/OrganizationAdd";
-
-
+ 
 import AssetType from "../pages/AssetManagement/AssetType/AssetType";
 import DepreciationRule from "../pages/AssetManagement/DepreciationRule/DepreciationRule";
 import AssetInformation from "../pages/AssetDescription/AssetInformation/AssetInformation";
@@ -50,6 +62,8 @@ import CreateAssetIssueReturn from "../pages/AssetManagement/AssetIssueReturn/Cr
 import ChangePassword from "../pages/Admin/ChangePassword/ChangePassword";
 import PageSetup from "../pages/Admin/PageSetup/PageSetup";
 import HelpCreation from "../pages/Admin/HelpCreation/HelpCreation";
+
+
 import AssetDynamicReport from "../pages/Reports/AssetDynamicReport/AssetDynamicReport";
 import AssetIssueReturnReport from "../pages/Reports/AssetIssueReturnReport/AssetIssueReturnReport";
 import ConditionalAssetReport from "../pages/Reports/ConditionalAssetReport/ConditionalAssetReport";
@@ -135,7 +149,14 @@ const appRoutes: RouteType[] = [
               displayText: "Department Master",
             },
           },
-        
+          // {
+          //   path: "/admin/masters/DesignationMaster",
+          //   element: <DesignationMaster />,
+          //   state: "master.DesignationMaster",
+          //   sidebarProps: {
+          //     displayText: "Designation Master",
+          //   },
+          // },
           {
             path: "/admin/masters/City",
             element: <CityMaster />,
@@ -152,7 +173,14 @@ const appRoutes: RouteType[] = [
               displayText: "State",
             },
           },
-          
+          // {
+          //   path: "/admin/masters/GenderMaster",
+          //   element: <GenderMaster />,
+          //   state: "master.GenderMaster",
+          //   sidebarProps: {
+          //     displayText: "Gender",
+          //   },
+          // },
           {
             path: "/admin/masters/Country",
             element: <CountryMaster />,
@@ -226,30 +254,30 @@ const appRoutes: RouteType[] = [
 
 
 
-      // {
-      //   path: "/admin/UserCreation",
-      //   element: <UserCreation />,
-      //   state: "Admin.UserCreation",
-      //   sidebarProps: {
-      //     displayText: "UserCreation",
-      //   },
-      // },
-      // {
-      //   path: "/admin/PageSetup",
-      //   element: <PageSetup />,
-      //   state: "Admin.PageSetup",
-      //   sidebarProps: {
-      //     displayText: "PageSetup",
-      //   },
-      // },
-      // {
-      //   path: "/admin/MenuCreate",
-      //   element: <MenuCreate />,
-      //   state: "Admin.MenuCreate",
-      //   sidebarProps: {
-      //     displayText: "MenuCreate",
-      //   },
-      // },
+      {
+        path: "/admin/UserCreation",
+        element: <UserCreation />,
+        state: "Admin.UserCreation",
+        sidebarProps: {
+          displayText: "UserCreation",
+        },
+      },
+      {
+        path: "/admin/PageSetup",
+        element: <PageSetup />,
+        state: "Admin.PageSetup",
+        sidebarProps: {
+          displayText: "PageSetup",
+        },
+      },
+      {
+        path: "/admin/MenuCreate",
+        element: <MenuCreate />,
+        state: "Admin.MenuCreate",
+        sidebarProps: {
+          displayText: "MenuCreate",
+        },
+      },
       {
         path: "/admin/HelpCreation",
         element: <HelpCreation />,
@@ -257,42 +285,42 @@ const appRoutes: RouteType[] = [
         sidebarProps: {
           displayText: "HelpCreation",
         },
-       },
-      // {
-      //   path: "/admin/UserPermission",
-      //   element: <UserPermission />,
-      //   state: "Admin.userpremission",
-      //   sidebarProps: {
-      //     displayText: "userpremission",
-      //   },
-      // },
-      // {
-      //   path: "/admin/Organization",
-      //   element: <Organization />,
-      //   state: "Admin.organization",
-      //   sidebarProps: {
-      //     displayText: "Organization",
-      //   },
-      // },
+      },
+      {
+        path: "/admin/UserPermission",
+        element: <UserPermission />,
+        state: "Admin.userpremission",
+        sidebarProps: {
+          displayText: "userpremission",
+        },
+      },
+      {
+        path: "/admin/Organization",
+        element: <Organization />,
+        state: "Admin.organization",
+        sidebarProps: {
+          displayText: "Organization",
+        },
+      },
 
-      // {
-      //   path: "/admin/OrganizationAdd",
-      //   element: <OrganizationAdd />,
-      //   state: "Admin.OrganizationAdd",
-      // },
-      // {
-      //   path: "/admin/OrganizationEdit",
-      //   element: <OrganizationEdit />,
-      //   state: "Admin.OrganizationEdit",
-      // },
-      // {
-      //   path: "/admin/Roles",
-      //   element: <Roles />,
-      //   state: "Admin.Roles",
-      //   sidebarProps: {
-      //     displayText: "Roles",
-      //   },
-      // },
+      {
+        path: "/admin/OrganizationAdd",
+        element: <OrganizationAdd />,
+        state: "Admin.OrganizationAdd",
+      },
+      {
+        path: "/admin/OrganizationEdit",
+        element: <OrganizationEdit />,
+        state: "Admin.OrganizationEdit",
+      },
+      {
+        path: "/admin/Roles",
+        element: <Roles />,
+        state: "Admin.Roles",
+        sidebarProps: {
+          displayText: "Roles",
+        },
+      },
 
 
     ]
@@ -443,137 +471,146 @@ const appRoutes: RouteType[] = [
       },
 
 
-      
+      // {
+      //   path: "/communication/email/emailsettings",
+      //   element: <Emailsettingmaster />,
+      //   state: "email.emailMaster",
+      // },
+      // {
+      //   path: "/communication/sms/smssettings",
+      //   element: <Smssetting />,
+      //   state: "email.Smssetting",
+      // },
     ],
   },
 
 
   // asset information start
 
-  // {
-  //   path: "/AssetDescription",
-  //   element: <DashboardPageLayout />,
-  //   state: "AssetDescription",
-  //   sidebarProps: {
-  //     displayText: "AssetDescription",
-  //     icon: <DashboardOutlinedIcon />,
-  //   },
-  //   child: [
-  //     {
-  //       path: "/AssetDescription/AssetInformation",
-  //       element: <AssetInformation />,
-  //       state: "AssetDescription.AssetInformation",
-  //       sidebarProps: {
-  //         displayText: "AssetInformation",
-  //       },
-  //     },
-  //     {
-  //       path: "/AssetDescription/GeneralInformation",
-  //       element: <GeneralInformation />,
-  //       state: "AssetDescription.GeneralInformation",
-  //       sidebarProps: {
-  //         displayText: "GeneralInformation",
-  //       },
-  //     },
-  //     {
-  //       path: "/AssetDescription/PurchaseDetail",
-  //       element: <PurchaseDetail />,
-  //       state: "AssetDescription.PurchaseDetail",
-  //       sidebarProps: {
-  //         displayText: "PurchaseDetail",
-  //       },
-  //     },
-  //     {
-  //       path: "/AssetDescription/Status",
-  //       element: <Status />,
-  //       state: "AssetDescription.Status",
-  //       sidebarProps: {
-  //         displayText: "Status",
-  //       },
-  //     },
-  //     {
-  //       path: "/AssetDescription/BreakDown",
-  //       element: <BreakDown />,
-  //       state: "AssetDescription.BreakDown",
-  //       sidebarProps: {
-  //         displayText: "BreakDown",
-  //       },
-  //     },
-  //     {
-  //       path: "/AssetDescription/AssetLocation",
-  //       element: <AssetLocation />,
-  //       state: "AssetDescription.AssetLocation",
-  //       sidebarProps: {
-  //         displayText: "AssetLocation",
-  //       },
-  //     },
+  {
+    path: "/AssetDescription",
+    element: <DashboardPageLayout />,
+    state: "AssetDescription",
+    sidebarProps: {
+      displayText: "AssetDescription",
+      icon: <DashboardOutlinedIcon />,
+    },
+    child: [
+      {
+        path: "/AssetDescription/AssetInformation",
+        element: <AssetInformation />,
+        state: "AssetDescription.AssetInformation",
+        sidebarProps: {
+          displayText: "AssetInformation",
+        },
+      },
+      {
+        path: "/AssetDescription/GeneralInformation",
+        element: <GeneralInformation />,
+        state: "AssetDescription.GeneralInformation",
+        sidebarProps: {
+          displayText: "GeneralInformation",
+        },
+      },
+      {
+        path: "/AssetDescription/PurchaseDetail",
+        element: <PurchaseDetail />,
+        state: "AssetDescription.PurchaseDetail",
+        sidebarProps: {
+          displayText: "PurchaseDetail",
+        },
+      },
+      {
+        path: "/AssetDescription/Status",
+        element: <Status />,
+        state: "AssetDescription.Status",
+        sidebarProps: {
+          displayText: "Status",
+        },
+      },
+      {
+        path: "/AssetDescription/BreakDown",
+        element: <BreakDown />,
+        state: "AssetDescription.BreakDown",
+        sidebarProps: {
+          displayText: "BreakDown",
+        },
+      },
+      {
+        path: "/AssetDescription/AssetLocation",
+        element: <AssetLocation />,
+        state: "AssetDescription.AssetLocation",
+        sidebarProps: {
+          displayText: "AssetLocation",
+        },
+      },
 
 
-  //     {
-  //       path: "/AssetDescription/LicensingInsuranceMaster",
-  //       element: <LicensingInsuranceMaster />,
-  //       state: "AssetDescription.LicensingInsuranceMaster",
-  //       sidebarProps: {
-  //         displayText: "Licensing/Insurance",
-  //       },
-  //     },
-  //     {
-  //       path: "/AssetDescription/AddLicensingInsuranceMaster",
-  //       element: <AddLicensingInsuranceMaster />,
-  //       state: "AssetDescription.AddLicensingInsuranceMaster",
-  //     },
-  //     {
-  //       path: "/AssetDescription/EditLicensingInsuranceMaster",
-  //       element: <EditLicensingInsuranceMaster />,
-  //       state: "AssetDescription.EditLicensingInsuranceMaster",
-  //     },
-  //     {
-  //       path: "/AssetDescription/MaintainanceWarrantyMaster",
-  //       element: <MaintainanceWarrantyMaster />,
-  //       state: "AssetDescription.MaintainanceWarrantyMaster",
-  //       sidebarProps: {
-  //         displayText: "Licensing/Insurance",
-  //       },
-  //     },
-  //     {
-  //       path: "/AssetDescription/AddMaintainanceWarrantyMaster",
-  //       element: <AddMaintainanceWarrantyMaster />,
-  //       state: "AssetDescription.AddMaintainanceWarrantyMaster",
-  //     },
-  //     {
-  //       path: "/AssetDescription/EditMaintainanceWarrantyMaster",
-  //       element: <EditMaintainanceWarrantyMaster />,
-  //       state: "AssetDescription.EditMaintainanceWarrantyMaster",
-  //     },
-  //     {
-  //       path: "/AssetDescription/UtilizationLog",
-  //       element: <UtilizationLog />,
-  //       state: "AssetDescription.UtilizationLog",
-  //       sidebarProps: {
-  //         displayText: "Licensing/Insurance",
-  //       },
-  //     },
-  //     {
-  //       path: "/AssetDescription/AddUtilizationLog",
-  //       element: <AddUtilizationLog />,
-  //       state: "AssetDescription.AddUtilizationLog",
-  //     },
-  //     {
-  //       path: "/AssetDescription/EditUtilizationLog",
-  //       element: <EditUtilizationLog />,
-  //       state: "AssetDescription.EditUtilizationLog",
-  //     },
-  //     {
-  //       path: "/AssetDescription/DepreciationRule",
-  //       element: <DepreciationRule />,
-  //       state: "AssetDescription.DepreciationRule",
-  //       sidebarProps: {
-  //         displayText: "DepreciationRule",
-  //       },
-  //     },
+      {
+        path: "/AssetDescription/LicensingInsuranceMaster",
+        element: <LicensingInsuranceMaster />,
+        state: "AssetDescription.LicensingInsuranceMaster",
+        sidebarProps: {
+          displayText: "Licensing/Insurance",
+        },
+      },
+      {
+        path: "/AssetDescription/AddLicensingInsuranceMaster",
+        element: <AddLicensingInsuranceMaster />,
+        state: "AssetDescription.AddLicensingInsuranceMaster",
+      },
+      {
+        path: "/AssetDescription/EditLicensingInsuranceMaster",
+        element: <EditLicensingInsuranceMaster />,
+        state: "AssetDescription.EditLicensingInsuranceMaster",
+      },
+      {
+        path: "/AssetDescription/MaintainanceWarrantyMaster",
+        element: <MaintainanceWarrantyMaster />,
+        state: "AssetDescription.MaintainanceWarrantyMaster",
+        sidebarProps: {
+          displayText: "Licensing/Insurance",
+        },
+      },
+      {
+        path: "/AssetDescription/AddMaintainanceWarrantyMaster",
+        element: <AddMaintainanceWarrantyMaster />,
+        state: "AssetDescription.AddMaintainanceWarrantyMaster",
+      },
+      {
+        path: "/AssetDescription/EditMaintainanceWarrantyMaster",
+        element: <EditMaintainanceWarrantyMaster />,
+        state: "AssetDescription.EditMaintainanceWarrantyMaster",
+      },
+      {
+        path: "/AssetDescription/UtilizationLog",
+        element: <UtilizationLog />,
+        state: "AssetDescription.UtilizationLog",
+        sidebarProps: {
+          displayText: "Licensing/Insurance",
+        },
+      },
+      {
+        path: "/AssetDescription/AddUtilizationLog",
+        element: <AddUtilizationLog />,
+        state: "AssetDescription.AddUtilizationLog",
+      },
+      {
+        path: "/AssetDescription/EditUtilizationLog",
+        element: <EditUtilizationLog />,
+        state: "AssetDescription.EditUtilizationLog",
+      },
+      {
+        path: "/AssetDescription/DepreciationRule",
+        element: <DepreciationRule />,
+        state: "AssetDescription.DepreciationRule",
+        sidebarProps: {
+          displayText: "DepreciationRule",
+        },
+      },
 
-  //   ],
-  // },
+    ],
+  },
   {
     path: "staffinfo.",
     element: <DashboardPageLayout />,
