@@ -1,9 +1,9 @@
 
 import UserPermission from "../pages/Admin/UserPermission/UserPermission";
 import MenuCreate from "../pages/Admin/MenuCreate/MenuCreate";
-import MenuMaster from "../pages/master/Menu/MenuMaster";
-import MenuMasterAdd from "../pages/master/Menu/MenuMasterAdd";
-import MenuMasterEdit from "../pages/master/Menu/MenuMasterEdit";
+// import MenuMaster from "../pages/master/Menu/MenuMaster";
+// import MenuMasterAdd from "../pages/master/Menu/MenuMasterAdd";
+// import MenuMasterEdit from "../pages/master/Menu/MenuMasterEdit";
 import HomePage from "../pages/home/HomePage";
 import LoginPage from "../loginPage/LoginPage";
 import { RouteType } from "./config";

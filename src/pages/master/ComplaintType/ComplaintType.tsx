@@ -2,16 +2,10 @@ import * as React from "react";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import {
-    Autocomplete,
     Box,
     Button,
-    Checkbox,
-    Chip,
     Divider,
-    FormControlLabel,
-    FormGroup,
     Stack,
-    Switch,
     TextField,
     Typography,
 } from "@mui/material";
@@ -29,7 +23,7 @@ import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { toast } from "react-toastify";
 import ToastApp from "../../../ToastApp";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { getId, getISTDate } from "../../../utils/Constant";
+import { getISTDate } from "../../../utils/Constant";
 import CustomDataGrid from "../../../utils/CustomDatagrid";
 import CustomLabel from "../../../CustomLable";
 import ButtonWithLoader from "../../../utils/ButtonWithLoader";
@@ -37,8 +31,6 @@ import Languages from "../../../Languages";
 import { Language } from "react-transliterate";
 import "react-transliterate/dist/index.css";
 import TranslateTextField from "../../../TranslateTextField";
-import DataGrids from "../../../utils/Datagrids";
-
 
 interface MenuPermission {
     isAdd: boolean;
@@ -47,18 +39,14 @@ interface MenuPermission {
     isDel: boolean;
 }
 
-export default function PageSetup() {
+export default function DesignationMaster() {
     const { i18n, t } = useTranslation();
     const { defaultValues, defaultValuestime } = getISTDate();
 
     const [columns, setColumns] = useState<any>([]);
     const [rows, setRows] = useState<any>([]);
-    const [editId, setEditId] = useState<any>(0);
-
+    const [editId, setEditId] = useState<any>(-1);
     const location = useLocation();
-
-
-    // console.log('location', location)
     const [isLoading, setIsLoading] = useState(true);
     const [permissionData, setPermissionData] = useState<MenuPermission>({
         isAdd: false,
@@ -66,104 +54,42 @@ export default function PageSetup() {
         isPrint: false,
         isDel: false,
     });
-
-
-
-    const [option, setOption] = useState([
-        { value: "-1", label: t("text.PageName") },
-    ]);
-
-
-    const Userid = getId();
     const [lang, setLang] = useState<Language>("en");
 
     useEffect(() => {
-        const dataString = localStorage.getItem("userdata");
-        if (dataString) {
-            const data = JSON.parse(dataString);
-            if (data && data.length > 0) {
-                const userPermissionData = data[0]?.userPermission;
-                if (userPermissionData && userPermissionData.length > 0) {
-                    const menudata = userPermissionData[0]?.parentMenu;
-                    for (let index = 0; index < menudata.length; index++) {
-                        const childMenudata = menudata[index]?.childMenu;
-                        const pathrow = childMenudata.find(
-                            (x: any) => x.path === location.pathname
-                        );
-                        console.log("data", pathrow);
-                        if (pathrow) {
-
-                            setPermissionData(pathrow);
-                        }
-                    }
-                }
-            }
-        }
+        // const dataString = localStorage.getItem("userdata");
+        // if (dataString) {
+        //   const data = JSON.parse(dataString);
+        //   if (data && data.length > 0) {
+        //     const userPermissionData = data[0]?.userPermission;
+        //     if (userPermissionData && userPermissionData.length > 0) {
+        //       const menudata = userPermissionData[0]?.parentMenu;
+        //       for (let index = 0; index < menudata.length; index++) {
+        //         const childMenudata = menudata[index]?.childMenu;
+        //         const pathrow = childMenudata.find(
+        //           (x: any) => x.path === location.pathname
+        //         );
+        //         console.log("data", pathrow);
+        //         if (pathrow) {
+        //           setPermissionData(pathrow);
+        //           // getList();
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
         getList();
-    }, [isLoading]);
-
-
-
-    useEffect(() => {
-
-        getPageName();
-
     }, []);
-
-
-    const handleSwitchChange = (
-        event: React.ChangeEvent<HTMLInputElement>,
-        value: any
-    ) => {
-        console.log(value)
-        const updatedStatus = event.target.checked ? true : false;
-        const collectData = {
-            setupId: value.id,
-            aspxPageName: value.aspxPageName,
-            fieldName: value.fieldName,
-            instId: value.instId,
-            showHide: updatedStatus
-
-        };
-        api
-            .post(`Setting/AddUpdatepagesetupData`, collectData)
-            .then((response) => {
-                if (response.data.isSuccess) {
-                    toast.success(response.data.mesg);
-                    getList();
-                } else {
-                    toast.error(response.data.mesg);
-                }
-            });
-    };
-
-
-    const getPageName = () => {
-
-        api.get(`Setting/GetPageSetupDataall`).then((res) => {
-            const arr: { label: string; value: string }[] = [];
-            //console.log("result" + JSON.stringify(res.data.data));
-            for (let index = 0; index < res.data.data.length; index++) {
-                arr.push({
-                    label: res.data.data[index]["aspxPageName"],
-                    value: res.data.data[index]["setupId"],
-                });
-            }
-            setOption(arr);
-        });
-    };
-
-
-
+    // }, [isLoading]);
 
     let delete_id = "";
     const accept = () => {
         const collectData = {
-            id: delete_id.toString(),
+            compTypeId: delete_id,
         };
-        //console.log("collectData " + JSON.stringify(collectData));
+        console.log("collectData " + JSON.stringify(collectData));
         api
-            .post(`Setting/DeletepagesetupData`, collectData)
+            .delete(`ComplainType/DeleteComplainType`, { data: collectData })
             .then((response) => {
                 if (response.data.isSuccess) {
                     toast.success(response.data.mesg);
@@ -173,13 +99,13 @@ export default function PageSetup() {
                 getList();
             });
     };
-
     const reject = () => {
         // toast.warn({summary: 'Rejected', detail: 'You have rejected', life: 3000 });
         toast.warn("Rejected: You have rejected", { autoClose: 3000 });
     };
 
     const handledeleteClick = (del_id: any) => {
+        // console.log(del_id + " del_id ");
         delete_id = del_id;
         confirmDialog({
             message: "Do you want to delete this record ?",
@@ -192,17 +118,19 @@ export default function PageSetup() {
     };
 
     const getList = () => {
-
+        const collectData = {
+            "compTypeId": -1
+        };
         try {
             api
-                .get(`Setting/GetPageSetupData?PageId=-1`)
+                .post(`ComplainType/GetComplainType`, collectData)
                 .then((res) => {
                     console.log("result" + JSON.stringify(res.data.data));
                     const data = res.data.data;
                     const arr = data.map((item: any, index: any) => ({
                         ...item,
                         serialNo: index + 1,
-                        id: item.setupId,
+                        id: item.compTypeId,
                     }));
                     setRows(arr);
                     setIsLoading(false);
@@ -233,9 +161,9 @@ export default function PageSetup() {
                                                 onClick={() => routeChangeEdit(params.row)}
                                             />
                                             {/* ) : (
-                        ""
-                      )}
-                      {permissionData?.isDel ? ( */}
+                         "" 
+                      )}  */}
+                                            {/* {permissionData?.isDel ? ( */}
                                             <DeleteIcon
                                                 style={{
                                                     fontSize: "20px",
@@ -246,24 +174,9 @@ export default function PageSetup() {
                                                     handledeleteClick(params.row.id);
                                                 }}
                                             />
-                                            {/* ) : (
-                        ""
-                      )} */}
-
-
-                                            <Switch
-                                                // checked={(params.row.empStatus)}
-                                                checked={params.row.showHide === true}
-                                                style={{
-                                                    color: params.row.showHide === true ? "green" : "red",
-                                                }}
-                                                onChange={(value: any) =>
-                                                    handleSwitchChange(value, params.row)
-                                                }
-                                                inputProps={{
-                                                    "aria-label": "Toggle Switch",
-                                                }}
-                                            />
+                                            {/* ) : ( 
+                          "" 
+                        )}  */}
                                         </Stack>,
                                     ];
                                 },
@@ -276,45 +189,17 @@ export default function PageSetup() {
                                 headerClassName: "MuiDataGrid-colCell",
                             },
                             {
-                                field: "fieldName",
-                                headerName: t("text.FieldName"),
+                                field: "compTypeName",
+                                headerName: t("text.compTypeName"),
                                 flex: 1,
                                 headerClassName: "MuiDataGrid-colCell",
                             },
-
-
-                            {
-                                field: "aspxPageName",
-                                headerName: t("text.PageName"),
-                                flex: 1,
-                                headerClassName: "MuiDataGrid-colCell",
-                            },
-                         
-
-                            {
-                                field: "status",
-                                headerName: t("text.Status"),
-                                flex: 1,
-                                headerClassName: "MuiDataGrid-colCell",
-                                renderCell: (params) => [
-                                    <Stack direction="row" spacing={1}>
-                                        {params.row.showHide === true ? (
-                                            <Chip
-                                                label={t("Active")}
-                                                color="success"
-                                                style={{ fontSize: "14px" }}
-                                            />
-                                        ) : (
-                                            <Chip
-                                                label={("InActive")}
-                                                color="error"
-                                                style={{ fontSize: "14px" }}
-                                            />
-                                        )}
-                                    </Stack>,
-                                ],
-                            },
-
+                            //   {
+                            //     field: "designationCode",
+                            //     headerName: t("text.DesignationCode"),
+                            //     flex: 1,
+                            //     headerClassName: "MuiDataGrid-colCell",
+                            //   },
                         ];
                         setColumns(columns as any);
                     }
@@ -325,35 +210,42 @@ export default function PageSetup() {
             // setIsLoading(false);
         }
     };
-
- 
-
+    const validationSchema = Yup.object({
+        compTypeName: Yup.string().test(
+            "required",
+            t("text.reqcompTypeName"),
+            function (value: any) {
+                return value && value.trim() !== "";
+            }
+        ),
+    });
     const [toaster, setToaster] = useState(false);
-
     const formik = useFormik({
         initialValues: {
-            "setupId": 0,
-            "aspxPageName": "",
-            "fieldName": "",
-            showHide: false,
-            instId: 0
 
-
+            "compTypeId": -1,
+            "compTypeName": "",
+            "createdBy": "",
+            "updatedBy": "",
+            "createdOn": defaultValuestime,
+            "updatedOn": defaultValuestime
         },
-        // validationSchema: validationSchema,
+        validationSchema: validationSchema,
         onSubmit: async (values) => {
-            //values.setupId = editId;
+            values.compTypeId = editId;
+            console.log("Submitting form with values:", values);
 
             const response = await api.post(
-                `Setting/AddUpdatepagesetupData`,
+                `ComplainType/AddUpdateComplainType`,
                 values
             );
+            console.log("API Response:", response.data);
             if (response.data.isSuccess) {
                 setToaster(false);
                 toast.success(response.data.mesg);
                 formik.resetForm();
                 getList();
-                setEditId(0);
+                setEditId("-1");
             } else {
                 setToaster(true);
                 toast.error(response.data.mesg);
@@ -362,19 +254,12 @@ export default function PageSetup() {
         },
     });
 
+    const requiredFields = ["compTypeName"];
 
 
     const routeChangeEdit = (row: any) => {
-
-        console.log('row', row)
-        formik.setFieldValue("aspxPageName", row.aspxPageName);
-        formik.setFieldValue("fieldName", row.fieldName);
-        formik.setFieldValue("showHide", row.showHide);
-        formik.setFieldValue("setupId", row.setupId);
-
-
-
-
+        formik.setFieldValue("compTypeName", row.compTypeName);
+        formik.setFieldValue("designationCode", row.designationCode);
         setEditId(row.id);
     };
 
@@ -403,7 +288,12 @@ export default function PageSetup() {
                         sx={{
                             width: "100%",
                             overflow: "hidden",
-
+                            "& .MuiDataGrid-colCell": {
+                                backgroundColor: "#2B4593",
+                                color: "#fff",
+                                fontSize: 18,
+                                fontWeight: 800,
+                            },
                         }}
                         style={{ padding: "10px" }}
                     >
@@ -418,7 +308,7 @@ export default function PageSetup() {
                                     sx={{ padding: "20px" }}
                                     align="left"
                                 >
-                                    {t("text.PageSetup")}
+                                    {t("text.ComplaintTypeMaster")}
                                 </Typography>
                             </Grid>
 
@@ -440,62 +330,40 @@ export default function PageSetup() {
                         <Divider />
 
                         <Box height={10} />
+
                         <form onSubmit={formik.handleSubmit}>
                             <Grid item xs={12} container spacing={2}>
+                                <Grid item xs={5}>
+                                    <TranslateTextField
+                                        label={t("text.compTypeName")}
+                                        value={formik.values.compTypeName}
+                                        onChangeText={(text: string) => handleConversionChange('compTypeName', text)}
+                                        required={true}
+                                        lang={lang}
+                                    />
+                                    {formik.touched.compTypeName && formik.errors.compTypeName ? (
+                                        <div style={{ color: "red", margin: "5px" }}>{formik.errors.compTypeName}</div>
+                                    ) : null}
+                                </Grid>
 
-                                <Grid xs={4} sm={4} item>
+
+                                {/* <Grid item xs={5}>
                                     <TextField
-                                        label={<CustomLabel text={t("text.PageName")} />}
-                                        value={formik.values.aspxPageName}
-                                        name="aspxPageName"
-                                        id="aspxPageName"
-                                        placeholder={t("text.PageName")}
+                                        id="designationCode"
+                                        name="designationCode"
+                                        label={<CustomLabel text={t("text.entershortCode")} />}
+                                        value={formik.values.designationCode}
+                                        placeholder={t("text.entershortCode")}
                                         size="small"
                                         fullWidth
                                         style={{ backgroundColor: "white" }}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                     />
-                                </Grid>
-
-
-                                <Grid xs={4} sm={4} item>
-                                    <TextField
-                                        label={<CustomLabel text={t("text.FieldName")} />}
-                                        value={formik.values.fieldName}
-                                        name="fieldName"
-                                        id="fieldName"
-                                        placeholder={t("text.FieldName")}
-                                        size="small"
-                                        fullWidth
-                                        style={{ backgroundColor: "white" }}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                    />
-                                </Grid>
-
-                                <Grid item lg={2} xs={12}>
-                                    <FormGroup>
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    checked={formik.values.showHide}
-                                                    onChange={formik.handleChange}
-                                                    name="showHide"
-                                                />
-                                            }
-                                            label="Is Active"
-                                        />
-                                    </FormGroup>
-                                </Grid>
-
-
+                                </Grid> */}
                                 <Grid item xs={2} sx={{ m: -1 }}>
-
-
-
-
-                                    {editId === 0 && (
+                                    {editId === -1 && (
+                                        //{editId === -1 && permissionData?.isAdd && (
                                         <ButtonWithLoader
                                             buttonText={t("text.save")}
                                             onClickHandler={handleSubmitWrapper}
@@ -503,14 +371,13 @@ export default function PageSetup() {
                                         />
                                     )}
 
-                                    {editId !== 0 && (
+                                    {editId !== -1 && (
                                         <ButtonWithLoader
                                             buttonText={t("text.update")}
                                             onClickHandler={handleSubmitWrapper}
                                             fullWidth={true}
                                         />
                                     )}
-
                                 </Grid>
                             </Grid>
                         </form>
@@ -532,7 +399,7 @@ export default function PageSetup() {
                                 <CircularProgress />
                             </div>
                         ) : (
-                            <DataGrids
+                            <CustomDataGrid
                                 isLoading={isLoading}
                                 rows={rows}
                                 columns={columns}

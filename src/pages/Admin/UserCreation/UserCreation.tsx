@@ -160,7 +160,7 @@ export default function UserCreation() {
       "Type": 4
     };
     api.post(`RoleMaster`, collectData).then((res) => {
-      const arr = [];
+      const arr: { label: string; value: any }[] = [];
       //console.log("result" + JSON.stringify(res.data.data));
       for (let index = 0; index < res.data.data.length; index++) {
         arr.push({
