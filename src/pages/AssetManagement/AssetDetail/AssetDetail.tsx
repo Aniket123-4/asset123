@@ -105,7 +105,7 @@ export default function AssetDetail() {
       "Type": 4
     };
     api.post(`zone`, collectData).then((res) => {
-      const arr = [];
+      const arr: any = [];
       //console.log("result" + JSON.stringify(res.data.data));
       for (let index = 0; index < res.data.data.length; index++) {
         arr.push({
@@ -122,7 +122,7 @@ export default function AssetDetail() {
       "type": 4
     };
     api.post(`department`, collectData).then((res) => {
-      const arr = [];
+      const arr: any = [];
       //console.log("result" + JSON.stringify(res.data.data));
       for (let index = 0; index < res.data.data.length; index++) {
         arr.push({
@@ -139,7 +139,7 @@ export default function AssetDetail() {
       "Type": 4
     };
     api.post(`ward`, collectData).then((res) => {
-      const arr = [];
+      const arr: any = [];
       //console.log("result" + JSON.stringify(res.data.data));
       for (let index = 0; index < res.data.data.length; index++) {
         arr.push({

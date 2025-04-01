@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import PageWrapper from "../components/layout/PageWrapper";
 import appRoutes from "./appRoutes";
 import { RouteType } from "./config";
+import React from "react";
 
 const generateRoute = (routes: RouteType[]): ReactNode => {
   return routes.map((route, index) => (

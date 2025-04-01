@@ -250,8 +250,8 @@ export default function MiniDrawer({ items }: any) {
   let navigate = useNavigate();
 
   function searchMenuItems(items: any, query: string) {
-    const results = [];
-
+    const results:any = [];
+ 
     for (const menuItem of items) {
       if (menuItem.name.toLowerCase().includes(query.toLowerCase())) {
         results.push(menuItem);
@@ -918,15 +918,14 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
           <DialogContent>
             <List>
               {themes.map((theme) => (
-                <ListItem
-                  button
+                <ListItemButton
                   key={theme.name}
                   onClick={() => handleThemeChange(theme.name)}
                   selected={selectedTheme === theme.name}
                 >
                   {theme.icon}
                   <span style={{ marginLeft: "10px" }}>{theme.name}</span>
-                </ListItem>
+                </ListItemButton>
               ))}
             </List>
           </DialogContent>
@@ -1174,139 +1173,7 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
 
           {/* Dynamic Items List */}
           {renderMenuItems(items)}
-          {/* <List sx={{ padding: 0 }}>
-            {items.map((text: any, index: any) => (
-              <React.Fragment key={index}>
-                <Divider />
-                <ListItem
-                  sx={{
-                    display: "flex",
-                    justifyContent: "flex-start", // Aligns items to the start
-                    alignItems: "center",
-                    backgroundColor: "inherit",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => collapsehamndle(index)}
-                >
-                  <ListItem sx={{
-                    display: "flex",
-                    justifyContent: "flex-start", // Ensures text and icon align at the start
-                    alignItems: "center",
-                    paddingLeft: 2, // Ensures left padding for alignment
-                    cursor: "pointer",
-                  }}>
-                    {open ? (
-                      <ListItemIcon sx={{
-                        minWidth: 0,
-                        mr: open ? 1 : "auto",
-                        justifyContent: "flex-start", // Align icon at the start
-                        color: index === collapseIndex ? "#FF0000" : "inherit",
-                      }}>
-                        {collapseIndex === index ? (
-                          <FaRegFolderOpen style={{ color: "#42AEEE" }} size={20} />
-                        ) : (
-                          <FolderIcon style={{ color: "#42AEEE" }} />
-                        )}
-                      </ListItemIcon>
-                    ) : (
-                      <div
-                        style={{
-                          minWidth: 24,
-                          minHeight: 24,
-                          borderRadius: "50%",
-                          backgroundColor: "lightgray",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          marginRight: 8,
-                          color: index === collapseIndex ? "#FF0000" : "inherit",
-                        }}
-                        title={text.name}
-                      >
-                        {text.name.charAt(0)}
-                      </div>
-                    )}
-
-                    <ListItemText
-                      primary={text.name}
-                      sx={{ opacity: open ? 1 : 0, textAlign: "start" }} // Ensures text is left-aligned
-                    />
-                  </ListItem>
-                </ListItem>
-                <Divider />
-                {collapseIndex === index && (
-                  <List sx={{ paddingLeft: open ? 2 : 0, backgroundColor: "inherit" }}>
-                    {items[index].items.map((subText: any, subIndex: any) => (
-                      <List sx={{ pl: 2 }} key={subIndex}>
-                        <ListItem
-                          sx={{
-                            display: "flex",
-                            justifyContent: "flex-start", // Aligns submenu items at the start
-                            alignItems: "center",
-                            paddingLeft: 2,
-                            backgroundColor: selectedSubMenu === subIndex ? "#FF7722" : "inherit",
-                            color: selectedSubMenu === subIndex ? "white" : "var(--drawer-color)",
-                            borderRadius: "10px",
-                            cursor: "pointer",
-                            "&:hover": {
-                              backgroundColor: "lightgray",
-                              color: "black",
-                            },
-                          }}
-                          onClick={(e) => {
-                            onClick(e, subText);
-                            handleSubMenuClick(subIndex);
-                          }}
-                        >
-                          {open && (
-                            <span
-                              style={{
-                                fontSize: "1.2rem",
-                                backgroundColor: "inherit",
-                                padding: "6px",
-                                borderRadius: "10px",
-                                color: "#426aee"
-                              }}
-                            >
-                              <FaFileLines />
-                            </span>
-                          )}
-                          {open ? (
-                            <p
-                              style={{
-                                fontWeight: 500,
-                                paddingTop: "3px",
-                                paddingBottom: "3px",
-                                opacity: open ? 1 : 0,
-                                textAlign: "start", // Ensures text is left-aligned
-                              }}
-                            >
-                              {subText.name}
-                            </p>
-                          ) : (
-                            <ListItemIcon
-                              sx={{
-                                minWidth: 0,
-                                mr: open ? 3 : "auto",
-                                justifyContent: "flex-start", // Aligns icon at the start
-                                color: open ? "#FF0000" : "inherit",
-                                backgroundColor: selectedSubMenu === subIndex ? "#FF7722" : "inherit",
-                                borderRadius: "25px",
-                                padding: "5px 10px",
-                              }}
-                              title={subText.name}
-                            >
-                              <DescriptionIcon />
-                            </ListItemIcon>
-                          )}
-                        </ListItem>
-                      </List>
-                    ))}
-                  </List>
-                )}
-              </React.Fragment>
-            ))}
-          </List> */}
+          
         </React.Fragment>
       </Drawer>
       {/* <Box  sx={{ flexGrow: 1, p: 3 }}>

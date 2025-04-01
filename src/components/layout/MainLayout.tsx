@@ -1078,6 +1078,7 @@ import sizeConfigs from "../../configs/sizeConfigs";
 import Sidebar from "../common/Sidebar";
 import { useEffect, useState } from "react";
 import "../common/ThemeStyle.css";
+import React from "react";
 
 const MainLayout = () => {
   const location = useLocation();

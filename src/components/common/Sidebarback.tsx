@@ -162,7 +162,7 @@ export default function MiniDrawer({ items }: any) {
 
   function searchMenuItems(items: any, query: string) {
 
-    const results = [];
+    const results :any= [];
 
     for (const menuItem of items) {
       if (menuItem.name.toLowerCase().includes(query.toLowerCase())) {

@@ -19,11 +19,11 @@ import CountryMaster from "../pages/master/CountryMaster/CountryMaster";
 import CityMaster from "../pages/master/CityMaster/CityMaster";
 import Organization from "../pages/Admin/Organization/Organization";
 import Roles from "../pages/Admin/Roles/Roles";
-import Login_Page from "../loginPage/Login_Page";
+
 
 import OrganizationEdit from "../pages/Admin/Organization/OrganizationEdit";
 import OrganizationAdd from "../pages/Admin/Organization/OrganizationAdd";
-import LoginPage1 from "../loginPage/LoginPage1";
+
 
 import AssetType from "../pages/AssetManagement/AssetType/AssetType";
 import DepreciationRule from "../pages/AssetManagement/DepreciationRule/DepreciationRule";

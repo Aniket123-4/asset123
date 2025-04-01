@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import colorConfigs from "../../configs/colorConfigs";
 import { RootState } from "../../redux/store";
 import { RouteType } from "../../routes/config";
+import React from "react";
 
 type Props = {
   item: RouteType;
