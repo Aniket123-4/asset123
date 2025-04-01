@@ -250,14 +250,14 @@ const appRoutes: RouteType[] = [
       //     displayText: "MenuCreate",
       //   },
       // },
-      // {
-      //   path: "/admin/HelpCreation",
-      //   element: <HelpCreation />,
-      //   state: "Admin.HelpCreation",
-      //   sidebarProps: {
-      //     displayText: "HelpCreation",
-      //   },
-      // },
+      {
+        path: "/admin/HelpCreation",
+        element: <HelpCreation />,
+        state: "Admin.HelpCreation",
+        sidebarProps: {
+          displayText: "HelpCreation",
+        },
+       },
       // {
       //   path: "/admin/UserPermission",
       //   element: <UserPermission />,

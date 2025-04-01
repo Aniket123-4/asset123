@@ -1,4 +1,5 @@
 import "./index.css";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +13,7 @@ import Typewriter from "../components/common/TypeWriter";
 import Divider from "@mui/material/Divider";
 // import advPics from "../assets/images/headDoc.png";
 // import logo from "../assets/images/Login.png";
-import { Button, CircularProgress, Grid, Paper, TextField, Typography } from "@mui/material";
+import { Button, CircularProgress, Grid, IconButton, InputAdornment, Paper, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import * as Yup from "yup";
@@ -26,7 +27,7 @@ import { motion } from "framer-motion";
 
 
 function LoginPage() {
-
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -49,7 +50,9 @@ function LoginPage() {
 
   const [tokenKey, setTokenKey] = useLocalStorage("name", "");
   let navigate = useNavigate();
-
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const handleButtonClick = async () => {
     if (!loading) {
       setSuccess(false);
@@ -91,34 +94,6 @@ function LoginPage() {
   };
   
   
-
-  // const handleButtonClick = async () => {
-  //   if (!loading) {
-  //     setSuccess(false);
-  //     setLoading(true);
-  //     try {
-  //       const response = await formik.submitForm();
-  //       if (response.success) {
-  //         localStorage.setItem("permissions", JSON.stringify(menu));
-  //         localStorage.setItem("theme", "light-theme");
-  //         localStorage.setItem("userId", response.data);
-
-  //         setTimeout(() => {
-  //           navigate(`/home`);
-  //         }, 300);
-
-  //         formik.resetForm();
-  //       } else {
-  //         toast.error("Login Failed! Invalid User or Password");
-  //         setLoading(false);
-  //       }
-  //     } catch (error) {
-  //       setLoading(false);
-  //     }
-  //   }
-  // };
-
-
 
   const validationSchema = Yup.object({
     userid: Yup.string().required("Username Required"),
@@ -206,36 +181,45 @@ function LoginPage() {
             <div style={{ color: "red", marginTop: "-10px", marginBottom: "15px" }}>Username is required</div>
           )}
 
-          <TextField
-            label="Password"
-            fullWidth
-            type="password"
-            margin="normal"
-            variant="outlined"
-            sx={{
-              background: "rgba(255,255,255,0.5)",
-              borderRadius: "8px",
-              "& .MuiOutlinedInput-root": {
-                transition: "0.3s",
-                "&:hover": {
-                  boxShadow: "0 0 10px rgba(0,0,0,0.2)",
-                },
-              },
-            }}
-            id="code"
-            name="code"
-            value={formik.values.password}
-            onChange={(e) => {
-              formik.setFieldValue("password", e.target.value.toString())
-            }}
-          />
+<TextField
+  label="Password"
+  fullWidth
+  type={showPassword ? "text" : "password"}
+  margin="normal"
+  variant="outlined"
+  sx={{
+    background: "rgba(255,255,255,0.5)",
+    borderRadius: "8px",
+    "& .MuiOutlinedInput-root": {
+      transition: "0.3s",
+      "&:hover": {
+        boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+      },
+    },
+  }}
+  id="password"
+  name="password"
+  value={formik.values.password}
+  onChange={(e) => {
+    formik.setFieldValue("password", e.target.value.toString());
+  }}
+  InputProps={{
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton onClick={togglePasswordVisibility} edge="end">
+          {showPassword ? <VisibilityOff /> : <Visibility />}
+        </IconButton>
+      </InputAdornment>
+    ),
+  }}
+/>
           {formik.touched.password && formik.errors.password && (
             <div style={{ color: "red", marginTop: "-10px", marginBottom: "15px" }}>Password is required</div>
           )}
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
-              type="button"
+              type="submit"
               variant="contained"
               fullWidth
               sx={{
