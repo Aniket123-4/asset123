@@ -35,6 +35,7 @@ import TranslateTextField from "../../../TranslateTextField";
 import DataGrids from "../../../utils/Datagrids";
 import ReactQuill from "react-quill";
 
+
 interface MenuPermission {
    isAdd: boolean;
    isEdit: boolean;
