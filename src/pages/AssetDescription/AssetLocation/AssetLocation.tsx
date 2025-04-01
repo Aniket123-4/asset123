@@ -70,7 +70,7 @@ export default function AssetLocation() {
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation();
     const [editId, setEditId] = useState(0);
-   
+
     const [panOpens, setPanOpen] = React.useState(false);
     const [modalImg, setModalImg] = useState("");
     const [Opens, setOpen] = React.useState(false);
@@ -86,7 +86,7 @@ export default function AssetLocation() {
     let navigate = useNavigate();
     const [locationOption, setlocationOption] = useState([
         { value: -1, label: t("text.SelectDept") },
-      ]);
+    ]);
     const [isStateCode, setIsStateCode] = useState(false);
     // const option = [
     //     { label: "BD1-Rm1-Furniture", value: "1" },
@@ -97,8 +97,8 @@ export default function AssetLocation() {
     //     { label: "Rm1-Alm1-Shl1-AP1", value: "6" },
     //     { label: "Rm1-Alm1-Shl2-AP1", value: "7" },
     //   ];
-      
-      
+
+
 
 
     useEffect(() => {
@@ -138,20 +138,20 @@ export default function AssetLocation() {
 
     const getlocationData = () => {
         const collectData = {
-          "Type": 3
+            "Type": 3
         };
         api.post(`LocationMaster`, collectData).then((res) => {
-          const arr = [];
-          //console.log("result" + JSON.stringify(res.data.data));
-          for (let index = 0; index < res.data.data.length; index++) {
-            arr.push({
-              label: res.data.data[index]["LocName"],
-              value: res.data.data[index]["LocId"],
-            });
-          }
-          setlocationOption(arr);
+            const arr: any = [];
+            //console.log("result" + JSON.stringify(res.data.data));
+            for (let index = 0; index < res.data.data.length; index++) {
+                arr.push({
+                    label: res.data.data[index]["LocName"],
+                    value: res.data.data[index]["LocId"],
+                });
+            }
+            setlocationOption(arr);
         });
-      }
+    }
 
     // const validationSchema = Yup.object({
     //     countryId: Yup.string().test(
@@ -185,13 +185,13 @@ export default function AssetLocation() {
         },
         // validationSchema: validationSchema,
 
-         validationSchema: Yup.object({
-             
-              Location_Id: Yup.string()
+        validationSchema: Yup.object({
+
+            Location_Id: Yup.string()
                 .required(t("text.reqLocation_Id")),
-                Asset_Id: Yup.string()
+            Asset_Id: Yup.string()
                 .required(t("text.reqasset")),
-            }),
+        }),
         onSubmit: async (values) => {
             values.Type = editId === 0 ? 1 : 2; // Dynamically decide Add or Update
             const response = await api.post(`AssetLocation`, values);
@@ -273,13 +273,13 @@ export default function AssetLocation() {
                 divisionid: "",
                 Type: 4
             });
-    
+
             const assetData = assetResponse.data.data;
-    
+
             // Fetch ResourceDetail data
             const resourceResponse = await api.post(`ResourceDetail`, { Type: 4 });
             const resourceData = resourceResponse.data.data;
-    
+
             // Create a mapping of Asset_Id to formatted ResourceCode
             const resourceMap = new Map(
                 resourceData.map((r: any) => [
@@ -287,7 +287,7 @@ export default function AssetLocation() {
                     `${r.ResourceCode} (${r.ResourceName || r.ResType || ""})`
                 ])
             );
-    
+
             // Map AssetLocation data and replace Asset_Id with formatted ResourceCode
             const assetsWithNames = assetData.map((asset: any, index: any) => ({
                 ...asset,
@@ -295,10 +295,10 @@ export default function AssetLocation() {
                 id: asset.Id,
                 AssetCode: resourceMap.get(parseInt(asset.Asset_Id)) || "Unknown", // Get formatted AssetCode from map
             }));
-    
+
             setZones(assetsWithNames);
             setIsLoading(false);
-    
+
             if (assetData.length > 0) {
                 const columns: GridColDef[] = [
                     {
@@ -326,8 +326,8 @@ export default function AssetLocation() {
             toast.error("Error fetching Asset data.");
         }
     };
-    
-    
+
+
 
 
     // const fetchZonesData = async () => {
@@ -495,12 +495,12 @@ export default function AssetLocation() {
                                         <TextField
                                             {...params}
                                             label={<CustomLabel text={t("text.SelectAssetcode")}
-                                            required={true}
+                                                required={true}
                                             />}
                                         />
                                     )}
                                 />
-                                       {formik.touched.Asset_Id && formik.errors.Asset_Id ? (
+                                {formik.touched.Asset_Id && formik.errors.Asset_Id ? (
                                     <div style={{ color: "red", margin: "5px" }}>
                                         {formik.errors.Asset_Id}
                                     </div>
@@ -540,7 +540,7 @@ export default function AssetLocation() {
                                     options={locationOption}
                                     fullWidth
                                     size="small"
-                                    value={locationOption.find((o:any) => o.value === formik.values.Location_Id) || null}
+                                    value={locationOption.find((o: any) => o.value === formik.values.Location_Id) || null}
                                     onChange={(event, newValue) => {
                                         formik.setFieldValue("Location_Id", newValue?.value || "");
                                     }}
@@ -551,7 +551,7 @@ export default function AssetLocation() {
                                         />
                                     )}
                                 />
-  {formik.touched.Location_Id && formik.errors.Location_Id ? (
+                                {formik.touched.Location_Id && formik.errors.Location_Id ? (
                                     <div style={{ color: "red", margin: "5px" }}>
                                         {formik.errors.Location_Id}
                                     </div>

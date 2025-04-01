@@ -7,6 +7,7 @@ import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import SidebarItem from "./SidebarItem";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import React from "react";
 
 type Props = {
   item: RouteType;

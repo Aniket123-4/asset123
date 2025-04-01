@@ -106,7 +106,7 @@ export default function AssetInformation() {
       "Type": 4
     };
     api.post(`zone`, collectData).then((res) => {
-      const arr = [];
+      const arr: any = [];
       //console.log("result" + JSON.stringify(res.data.data));
       for (let index = 0; index < res.data.data.length; index++) {
         arr.push({
@@ -123,7 +123,7 @@ export default function AssetInformation() {
       "type": 4
     };
     api.post(`department`, collectData).then((res) => {
-      const arr = [];
+      const arr: any = [];
       //console.log("result" + JSON.stringify(res.data.data));
       for (let index = 0; index < res.data.data.length; index++) {
         arr.push({
@@ -140,7 +140,7 @@ export default function AssetInformation() {
       "Type": 4
     };
     api.post(`ward`, collectData).then((res) => {
-      const arr = [];
+      const arr: any = [];
       //console.log("result" + JSON.stringify(res.data.data));
       for (let index = 0; index < res.data.data.length; index++) {
         arr.push({
@@ -209,12 +209,12 @@ export default function AssetInformation() {
       "ZoneId": 0,
       "Type": 1
     },
- validationSchema: Yup.object({
+    validationSchema: Yup.object({
       ResourceType: Yup.string()
         .required(t("text.reqAssetType")),
       ResourceName: Yup.string()
         .required(t("text.reqAssetName")),
-        ResourceCode: Yup.string()
+      ResourceCode: Yup.string()
         .required(t("text.reqasset")),
     }),
     onSubmit: async (values) => {
