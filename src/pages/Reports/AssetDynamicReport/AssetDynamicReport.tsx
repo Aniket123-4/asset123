@@ -660,7 +660,7 @@ export default function AssetDynamicReport() {
          "Type": 4
       };
       api.post(`zone`, collectData).then((res) => {
-         const arr = [];
+         const arr: { label: string; value: number }[] = [];
          //console.log("result" + JSON.stringify(res.data.data));
          for (let index = 0; index < res.data.data.length; index++) {
             arr.push({
@@ -677,7 +677,7 @@ export default function AssetDynamicReport() {
          "type": 4
       };
       api.post(`department`, collectData).then((res) => {
-         const arr = [];
+         const arr: { label: string; value: number }[] = [];
          //console.log("result" + JSON.stringify(res.data.data));
          for (let index = 0; index < res.data.data.length; index++) {
             arr.push({
@@ -694,7 +694,7 @@ export default function AssetDynamicReport() {
          "Type": 4
       };
       api.post(`ward`, collectData).then((res) => {
-         const arr = [];
+         const arr: { label: string; value: number }[] = [];
          //console.log("result" + JSON.stringify(res.data.data));
          for (let index = 0; index < res.data.data.length; index++) {
             arr.push({

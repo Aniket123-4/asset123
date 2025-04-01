@@ -42,7 +42,6 @@ import { jsPDF } from "jspdf";
 import * as XLSX from "xlsx";
 import "../../../index.css";
 import { getISTDate } from "../../../utils/Constant";
-import Logo from "../../../assets/images/KanpurLogo.png";
 import dayjs from "dayjs";
 
 interface MenuPermission {
