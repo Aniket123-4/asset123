@@ -766,11 +766,22 @@ export default function AssetDynamicReport() {
 
 
 
-   const handleChange = (event: any) => {
-      setCheckedItems({
-         ...checkedItems,
-         [event.target.name]: event.target.checked,
-      });
+   // const handleChange = (event: any) => {
+   //    setCheckedItems({
+   //       ...checkedItems,
+   //       [event.target.name]: event.target.checked,
+   //    });
+   // };
+
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name } = event.target;
+      // Create a new state where all keys are false except the selected one
+      const newState: any = Object.keys(checkedItems).reduce((acc, key) => {
+         acc[key] = key === name; // true only if key matches the changed input
+         return acc;
+      }, {} as Record<string, boolean>);
+
+      setCheckedItems(newState);
    };
 
    return (
