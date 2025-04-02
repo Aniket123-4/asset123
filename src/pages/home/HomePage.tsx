@@ -414,10 +414,10 @@ export default function HomePage() {
           (row: any) => `
                     <tr>
                       <td>${row.serialNo}</td>
-                      <td>${row.rescode}</td>
-                      <td>${row.resname}</td>
-                      <td>${row.ResType}</td>
-                      <td>${row.empname || "-"}</td>
+                      <td>${row.rescode || ""}</td>
+                      <td>${row.resname || ""}</td>
+                      <td>${row.ResType || ""}</td>
+                      <td>${row.empname || ""}</td>
                       <td>${row.issuedate}</td>
                     </tr>
                   `
@@ -474,10 +474,10 @@ export default function HomePage() {
           (row: any) => `
                   <tr>
                     <td>${row.serialNo}</td>
-                    <td>${row.ResourceCode}</td>
-                    <td>${row.ResourceName}</td>
-                    <td>${row.ResourceType}</td>
-                    <td>${row.ZoneId}</td>
+                    <td>${row.ResourceCode || ""}</td>
+                    <td>${row.ResourceName || ""}</td>
+                    <td>${row.ResourceType || ""}</td>
+                    <td>${row.assetLocation || ""}</td>
                   </tr>
                 `
         )
