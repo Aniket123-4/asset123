@@ -133,11 +133,57 @@ export default function HomePage() {
 
   const [columns, setColumns] = useState<GridColDef[]>([]);
 
+  const [assetDetails, setAssetDetails] = useState<any>([]);
+  const [locationData, setLocationData] = useState<any>([]);
+
   useEffect(() => { }, [getTop]);
 
   useEffect(() => {
+    fetchAssetDetails();
+    fetchLocation();
     getItemIssueData();
   }, []);
+
+
+  const fetchAssetDetails = async () => {
+    try {
+      const response = await api.post("ResourceDetail", {
+        Type: 4,
+      });
+
+      const data = response.data.data.map((item: any) => {
+        return {
+          ...item,
+        };
+      });
+
+      setAssetDetails(data);
+    } catch (error) {
+      console.error("Error fetching asset types:", error);
+      toast.error("Failed to load asset types.");
+    }
+  };
+
+
+  const fetchLocation = async () => {
+    try {
+      const response = await api.post("LocationMaster", {
+        Type: 3,
+      });
+
+      const data = response.data.data.map((item: any) => {
+        return {
+          ...item,
+        };
+      });
+
+      setLocationData(data);
+    } catch (error) {
+      console.error("Error fetching asset types:", error);
+      toast.error("Failed to load asset types.");
+    }
+  };
+
 
   const getItemIssueData = async () => {
     try {
@@ -186,13 +232,25 @@ export default function HomePage() {
 
   const getGeoLocationData = async () => {
     try {
-      const response = await api.post(`ResourceDetail`, { "Type": 4 });
+      const response = await api.post(`AssetLocation`, { "Type": 4 });
       const data = response.data.data;
       console.log("Fetched Data:", data);
       const processedData = data.map((item: any, index: number) => ({
         ...item,
-        id: item.ID,
+        id: item.Id,
         serialNo: index + 1,
+        ResourceCode: assetDetails[
+          assetDetails.findIndex((e: any) => e.ID === parseInt(item.Asset_Id))
+        ]?.ResourceCode,
+        ResourceName: assetDetails[
+          assetDetails.findIndex((e: any) => e.ID === parseInt(item.Asset_Id))
+        ]?.ResourceName,
+        ResourceType: item.Asset_Type,
+        assetLocation: locationData[
+          locationData.findIndex(
+            (e: any) => e.LocId === parseInt(item.Location_Id)
+          )
+        ]?.LocName,
       }));
       setGeoLocationOption(processedData);
       setIsLoading1(false);
@@ -218,7 +276,7 @@ export default function HomePage() {
           { field: "ResourceCode", headerName: t("text.ResourceCode"), flex: 1 },
           { field: "ResourceName", headerName: t("text.ResourceName"), flex: 1 },
           { field: "ResourceType", headerName: t("text.ResourceType"), flex: 1 },
-          { field: "ZoneId", headerName: t("text.LocationName"), flex: 1 },
+          { field: "assetLocation", headerName: t("text.LocationName"), flex: 1 },
         ];
         setColumns(dynamicColumns);
       }
@@ -226,6 +284,49 @@ export default function HomePage() {
       console.error("Error fetching data:", error);
     }
   };
+
+  // const getGeoLocationData = async () => {
+  //   try {
+  //     const response = await api.post(`ResourceDetail`, { "Type": 4 });
+  //     const data = response.data.data;
+  //     console.log("Fetched Data:", data);
+  //     const processedData = data.map((item: any, index: number) => ({
+  //       ...item,
+  //       id: item.ID,
+  //       serialNo: index + 1,
+  //     }));
+  //     setGeoLocationOption(processedData);
+  //     setIsLoading1(false);
+  //     setIsShow2(true);
+  //     setIsShow(false);
+  //     setSearchTerm("");
+  //     setSearchTerm1("");
+  //     if (data.length > 0) {
+  //       const dynamicColumns: GridColDef[] = [
+  //         {
+  //           field: "actions",
+  //           headerName: "Actions",
+  //           flex: 1,
+  //           renderCell: (params) => (
+  //             <Stack
+  //               spacing={1}
+  //               direction="row"
+  //               sx={{ alignItems: "center", marginTop: "1%" }}
+  //             ></Stack>
+  //           ),
+  //         },
+  //         { field: "serialNo", headerName: t("text.SrNo"), flex: .5 },
+  //         { field: "ResourceCode", headerName: t("text.ResourceCode"), flex: 1 },
+  //         { field: "ResourceName", headerName: t("text.ResourceName"), flex: 1 },
+  //         { field: "ResourceType", headerName: t("text.ResourceType"), flex: 1 },
+  //         { field: "ZoneId", headerName: t("text.LocationName"), flex: 1 },
+  //       ];
+  //       setColumns(dynamicColumns);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
   const items = [
     {
@@ -650,7 +751,7 @@ export default function HomePage() {
                           { field: "ResourceCode", headerName: t("text.ResourceCode"), flex: 1 },
                           { field: "ResourceName", headerName: t("text.ResourceName"), flex: 1 },
                           { field: "ResourceType", headerName: t("text.ResourceType"), flex: 1 },
-                          { field: "ZoneId", headerName: t("text.LocationName"), flex: 1 },
+                          { field: "assetLocation", headerName: t("text.LocationName"), flex: 1 },
                         ]}
                         slots={{ toolbar: GridToolbar }}
                         slotProps={{ toolbar: { showQuickFilter: true } }}
