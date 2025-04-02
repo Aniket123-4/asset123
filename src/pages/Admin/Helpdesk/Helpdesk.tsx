@@ -23,10 +23,10 @@ export default function HelpDesk() {
   const fetchHelpDeskData = async () => {
     setIsLoading(true);
     try {
-      const response = await api.post(`/Auth/GetHelpMenu`, { menuId: location.state.activeMenu || 39 }); // need to replace
+      const response = await api.post(`HelpCreation`, { Type: 4 ,PageTitleId: location.state.activeMenu }); // need to replace
       if (response.data && response.data.data.length > 0) {
-        setPageName(response.data.data[0]["menuName"]);
-        setPageDesk(response.data.data[0]["helpedit"]); 
+        setPageName(response.data.data[0]["Page_Name"]);
+        setPageDesk(response.data.data[0]["frontDesign"]); 
       } else {
         toast.warn("No content found.");
       }

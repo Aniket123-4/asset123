@@ -63,7 +63,7 @@ import ChangePassword from "../pages/Admin/ChangePassword/ChangePassword";
 import PageSetup from "../pages/Admin/PageSetup/PageSetup";
 import HelpCreation from "../pages/Admin/HelpCreation/HelpCreation";
 
-
+import Helpdesk from "../pages/Admin/Helpdesk/Helpdesk";
 import AssetDynamicReport from "../pages/Reports/AssetDynamicReport/AssetDynamicReport";
 import AssetIssueReturnReport from "../pages/Reports/AssetIssueReturnReport/AssetIssueReturnReport";
 import ConditionalAssetReport from "../pages/Reports/ConditionalAssetReport/ConditionalAssetReport";
@@ -252,7 +252,14 @@ const appRoutes: RouteType[] = [
         ]
       },
 
-
+      {
+        path: "/admin/Helpdesk",
+        element: <Helpdesk />,
+        state: "Admin.Helpdesk",
+        sidebarProps: {
+          displayText: "Help desk",
+        },
+      },
 
       {
         path: "/admin/UserCreation",
