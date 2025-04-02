@@ -92,13 +92,11 @@ import { TreeItem, treeItemClasses } from "@mui/x-tree-view/TreeItem";
 import TreeView from "@mui/x-tree-view/TreeView";
 import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
 
-
 import { FaRegFolderOpen } from "react-icons/fa6";
-import DescriptionIcon from '@mui/icons-material/Description';
+import DescriptionIcon from "@mui/icons-material/Description";
 
 import { FaFileLines } from "react-icons/fa6";
 import { useState } from "react";
-
 
 const drawerWidth = 225;
 
@@ -250,8 +248,8 @@ export default function MiniDrawer({ items }: any) {
   let navigate = useNavigate();
 
   function searchMenuItems(items: any, query: string) {
-    const results:any = [];
- 
+    const results: any = [];
+
     for (const menuItem of items) {
       if (menuItem.name.toLowerCase().includes(query.toLowerCase())) {
         results.push(menuItem);
@@ -283,85 +281,92 @@ export default function MiniDrawer({ items }: any) {
     children: MenuItem[]; // Nested submenu items (if any)
   }
 
-
   const [expandedMenus, setExpandedMenus] = useState<number[]>([]); // Track multiple expanded menus
 
-const handleClickMenu = (e: any, item: MenuItem) => {
-  const menuId = item.menuId;
-  const path = `${item.path}`;
+  const handleClickMenu = (e: any, item: MenuItem) => {
+    const menuId = item.menuId;
+    const path = `${item.path}`;
 
-  if (!path) {
-    window.alert("Path Not Found");
-  } else {
-    navigate(path);
-    setActiveMenuId(menuId); // Update active menu
-  }
-};
+    if (!path) {
+      window.alert("Path Not Found");
+    } else {
+      navigate(path);
+      setActiveMenuId(menuId); // Update active menu
+    }
+  };
 
-const toggleMenuExpansion = (menuId: number) => {
-  // Add or remove the menuId from the expandedMenus array
-  setExpandedMenus((prev) =>
-    prev.includes(menuId) ? prev.filter((id) => id !== menuId) : [...prev, menuId]
-  );
-};
+  const toggleMenuExpansion = (menuId: number) => {
+    // Add or remove the menuId from the expandedMenus array
+    setExpandedMenus((prev) =>
+      prev.includes(menuId)
+        ? prev.filter((id) => id !== menuId)
+        : [...prev, menuId]
+    );
+  };
 
-const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
-  <List sx={{ paddingLeft: level * 2 }}>
-    {menuItems.map((item) => (
-      <React.Fragment key={item.menuId}>
-        <Divider />
-        <ListItem
-          sx={{
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            backgroundColor: item.menuId === activeMenuId ? "#F0F8FF" : "inherit", // Highlight active menu
-            cursor: "pointer",
-            paddingLeft: level ? 2 : 0,
-            '&:hover': { backgroundColor: "#e0f7fa" }, // Hover effect
-          }}
-          onClick={(e) => {
-            if (!item.children.length) {
-              // If there are no children, navigate and set the active menu
-              handleClickMenu(e, item);
-              setActiveMenuId(item.menuId);
-            } else {
-              // Expand or collapse the menu
-              toggleMenuExpansion(item.menuId);
-            }
-          }}
-        >
-          <ListItemIcon
+  const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
+    <List sx={{ paddingLeft: level * 2 }}>
+      {menuItems.map((item) => (
+        <React.Fragment key={item.menuId}>
+          <Divider />
+          <ListItem
             sx={{
-              minWidth: 0,
-              mr: 1,
+              display: "flex",
               justifyContent: "flex-start",
-              color: expandedMenus.includes(item.menuId) || item.menuId === activeMenuId ? "#FF0000" : "inherit", // Highlight icon for active or expanded menus
+              alignItems: "center",
+              backgroundColor:
+                item.menuId === activeMenuId ? "#F0F8FF" : "inherit", // Highlight active menu
+              cursor: "pointer",
+              paddingLeft: level ? 2 : 0,
+              "&:hover": { backgroundColor: "#e0f7fa" }, // Hover effect
+            }}
+            onClick={(e) => {
+              if (!item.children.length) {
+                // If there are no children, navigate and set the active menu
+                handleClickMenu(e, item);
+                setActiveMenuId(item.menuId);
+              } else {
+                // Expand or collapse the menu
+                toggleMenuExpansion(item.menuId);
+              }
             }}
           >
-            {item.children.length ? (
-              expandedMenus.includes(item.menuId) ? (
-                <FaRegFolderOpen style={{ color: "#42AEEE" }} size={20} />
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: 1,
+                justifyContent: "flex-start",
+                color:
+                  expandedMenus.includes(item.menuId) ||
+                  item.menuId === activeMenuId
+                    ? "#FF0000"
+                    : "inherit", // Highlight icon for active or expanded menus
+              }}
+            >
+              {item.children.length ? (
+                expandedMenus.includes(item.menuId) ? (
+                  <FaRegFolderOpen style={{ color: "#42AEEE" }} size={20} />
+                ) : (
+                  <FolderIcon style={{ color: "#42AEEE" }} />
+                )
               ) : (
-                <FolderIcon style={{ color: "#42AEEE" }} />
-              )
-            ) : (
-              <DescriptionIcon />
-            )}
-          </ListItemIcon>
-          <ListItemText primary={item.menuName} sx={{ textAlign: "start" }} />
-        </ListItem>
-        <Divider />
-        {/* Render child menus only when the parent is expanded */}
-        {expandedMenus.includes(item.menuId) &&
-          item.children.length > 0 &&
-          renderMenuItems(item.children, level + 1)}
-      </React.Fragment>
-    ))}
-  </List>
-);
-
-  
+                <DescriptionIcon />
+              )}
+            </ListItemIcon>
+            <ListItemText
+              primary={open ? item.menuName : item.menuName.charAt(0)}
+              sx={{ textAlign: "start" }}
+            />
+          </ListItem>
+          <Divider />
+          {/* Render child menus only when the parent is expanded */}
+          {expandedMenus.includes(item.menuId) &&
+            item.children.length > 0 &&
+            renderMenuItems(item.children, level + 1)}
+        </React.Fragment>
+      ))}
+    </List>
+  );
 
   const handleSearchIconClick = () => {
     console.log("value", searchValue);
@@ -477,7 +482,8 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
   };
 
   const Logout = () => {
-    localStorage.setItem("permissions","[]");
+    localStorage.setItem("permissions", "[]");
+    localStorage.clear();
     navigate("/");
   };
 
@@ -798,9 +804,7 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
             {!openlogo && <img src={logo} width={60} height={60} />}
           </div>
 
-          <div style={{ fontSize: "2.5vw" }}>
-            Asset Management System
-          </div>
+          <div style={{ fontSize: "2.5vw" }}>Asset Management System</div>
 
           <IconButton
             onClick={handleClick}
@@ -946,7 +950,7 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
           <div
             role="presentation"
             onClick={handleClicked}
-          // style={{  borderBottomRightRadius: "15px" }}
+            // style={{  borderBottomRightRadius: "15px" }}
           >
             <Breadcrumbs aria-label="breadcrumb" sx={{ color: "#fff" }}>
               {/* <Link
@@ -1148,7 +1152,7 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
                   sx={{
                     justifyContent: open ? "initial" : "center",
                     px: 4.5,
-                    backgroundColor: "inherit"
+                    backgroundColor: "inherit",
                   }}
                   onClick={() => {
                     routeChangeHome();
@@ -1173,7 +1177,6 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
 
           {/* Dynamic Items List */}
           {renderMenuItems(items)}
-          
         </React.Fragment>
       </Drawer>
       {/* <Box  sx={{ flexGrow: 1, p: 3 }}>
@@ -1221,7 +1224,7 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
         onClose={() => {
           setProfileDrawerOpen(false);
         }}
-        onOpen={() => { }}
+        onOpen={() => {}}
         style={{
           zIndex: 1300,
         }}
@@ -1409,14 +1412,7 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
   );
 }
 
-
-
-
-
-
-
 /////////////////////////////////////////////////////////
-
 
 // import * as React from "react";
 // import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
@@ -1740,7 +1736,6 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
 //     }
 //   };
 
-
 //   // const handleMenuClick = (menu: any) => {
 //   //   setActiveMenu(menu.menuId);
 
@@ -1762,19 +1757,6 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
 //   //     }
 //   //   }
 //   // };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //   const toggleMenu = (menuId: number, parentId: number | null) => {
 //     setOpenMenus((prev: Set<number>) => {
@@ -2401,7 +2383,7 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
 //   } else {
 //     ID = ID.replace(/^"(.*)"$/, "$1"); // ✅ Only replace if ID exists
 //   }
-  
+
 //   // let ID: any = localStorage.getItem("username");
 //   // ID = ID.replace(/^"(.*)"$/, "$1");
 //   const handlePermissionClick = () => {
@@ -3071,7 +3053,6 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
 //         onClick={() => setProfileDrawerOpen(true)}
 //       />
 
-
 //       <SwipeableDrawer
 //         anchor="left"
 //         open={profileDrawerOpen}
@@ -3130,7 +3111,6 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
 //               {userData?.userName?.charAt(0) || "U"}
 //             </Avatar>
 //           </Box>
-
 
 //           {/* User Info Section */}
 //           <Box sx={{ paddingX: 2 }}>
@@ -3346,5 +3326,3 @@ const renderMenuItems = (menuItems: MenuItem[], level = 0) => (
 //     </Box>
 //   );
 // }
-
-
