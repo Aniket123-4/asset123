@@ -58,22 +58,37 @@ function LoginPage() {
       setSuccess(false);
       setLoading(true);
       try {
-        const response = await formik.submitForm(); // Submitting form
+        const response = await formik.submitForm();
   
         if (response.success) {
-          const userId = response.userDetails?.userid; // Extracting userid safely
+          const userId = response.userDetails?.userid;
   
           if (userId) {
-            localStorage.setItem("userid", userId); // Storing in localStorage
+            localStorage.setItem("userid", userId);
           }
   
-          // Store other user details and permissions
+          // Get role name from RoleMaster API
+          const roleResponse = await api.post("RoleMaster", {    "Type": 4 });
+          if (roleResponse.data.success) {
+            const roles = roleResponse.data.data;
+            const userRoleId = parseInt(response.userDetails.roles);
+            const userRole = roles.find((role: any) => role.roleID === userRoleId);
+            
+            // Store role name instead of ID
+            if (userRole) {
+              localStorage.setItem("roles", (userRole.RoleName));
+            } else {
+              console.warn("Role not found, storing ID instead");
+              localStorage.setItem("roles", (response.userDetails.roles));
+            }
+          }
+  
+          // Store other user details
           localStorage.setItem("permissions", JSON.stringify(response.menuPermissions));
           localStorage.setItem("userDetails", JSON.stringify(response.userDetails));
           localStorage.setItem("theme", "light-theme");
-          localStorage.setItem("userId", response.userDetails.ID); // Store numeric ID as well if needed
+          localStorage.setItem("userId", response.userDetails.ID);
   
-          // Trigger permissions update event
           window.dispatchEvent(new Event("permissionsUpdated"));
   
           setTimeout(() => {
@@ -92,6 +107,46 @@ function LoginPage() {
       }
     }
   };
+  // const handleButtonClick = async () => {
+  //   if (!loading) {
+  //     setSuccess(false);
+  //     setLoading(true);
+  //     try {
+  //       const response = await formik.submitForm(); // Submitting form
+  
+  //       if (response.success) {
+  //         const userId = response.userDetails?.userid; // Extracting userid safely
+  
+  //         if (userId) {
+  //           localStorage.setItem("userid", userId); // Storing in localStorage
+  //         }
+  
+  //         // Store other user details and permissions
+  //         localStorage.setItem("permissions", JSON.stringify(response.menuPermissions));
+  //         localStorage.setItem("userDetails", JSON.stringify(response.userDetails));
+  //         localStorage.setItem("theme", "light-theme");
+  //         localStorage.setItem("userId", response.userDetails.ID);
+  //         localStorage.setItem("roles" ,JSON.stringify( response.userDetails.roles)); 
+  
+  //         // Trigger permissions update event
+  //         window.dispatchEvent(new Event("permissionsUpdated"));
+  
+  //         setTimeout(() => {
+  //           navigate(`/home`);
+  //         }, 300);
+  
+  //         formik.resetForm();
+  //       } else {
+  //         toast.error("Login Failed! Invalid User or Password");
+  //         setLoading(false);
+  //       }
+  //     } catch (error) {
+  //       console.error("Login Error:", error);
+  //       toast.error("Login Failed! Please try again.");
+  //       setLoading(false);
+  //     }
+  //   }
+  // };
   
   
 
