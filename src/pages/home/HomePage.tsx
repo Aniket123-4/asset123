@@ -409,7 +409,7 @@ export default function HomePage() {
                 </tr>
               </thead>
               <tbody>
-                ${filteredRows
+                ${(getTop ? filteredRows.slice(0, 10) : filteredRows)
         .map(
           (row: any) => `
                     <tr>
@@ -469,7 +469,7 @@ export default function HomePage() {
               </tr>
             </thead>
             <tbody>
-              ${filteredRows1
+              ${(getTop ? filteredRows1.slice(0, 10) : filteredRows1)
         .map(
           (row: any) => `
                   <tr>

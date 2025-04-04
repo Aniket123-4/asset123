@@ -265,7 +265,7 @@ export default function AssetGeoLocationReport() {
             );
          }
 
-         if (formik.values.fromDate !=="" && formik.values.toDate !=="" ) {
+         if (formik.values.fromDate !== "" && formik.values.toDate !== "") {
             filteredData = filteredData.filter(
                (e: any) => new Date(e.Location_Date) >= new Date(formik.values.fromDate) && new Date(e.Location_Date) <= new Date(formik.values.toDate)
             );
@@ -498,8 +498,8 @@ export default function AssetGeoLocationReport() {
                   item
                   xs={12}
                   container
-                  spacing={2}
-                  sx={{ marginTop: "3%", justifyContent: "center" }}
+                  // spacing={2}
+                  sx={{ marginTop: "3%", justifyContent: "center", marginX: "auto" }}
                >
                   <DataGrid
                      rows={zones}
