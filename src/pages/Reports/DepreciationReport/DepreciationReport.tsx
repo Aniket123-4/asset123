@@ -419,7 +419,7 @@ export default function DepreciationReport() {
                   item
                   xs={12}
                   container
-                  spacing={2}
+                  // spacing={2}
                   sx={{ marginTop: "3%", justifyContent: "center" }}
                >
 

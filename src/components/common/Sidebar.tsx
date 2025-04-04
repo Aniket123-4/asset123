@@ -270,7 +270,7 @@ export default function MiniDrawer({ items }: any) {
   }
 
   interface MenuItem {
-    
+
     menuId: number; // Unique ID for the menu item
     parentId: number | null; // ID of the parent menu (null for root items)
     menuName: string; // Display name of the menu
@@ -282,7 +282,7 @@ export default function MiniDrawer({ items }: any) {
 
   const handleClickMenu = (e: any, item: MenuItem) => {
     const menuId = item.menuId;
-    setActiveMenu(item.menuId); 
+    setActiveMenu(item.menuId);
     const path = `${item.path}`;
 
     if (!path) {
@@ -332,11 +332,12 @@ export default function MiniDrawer({ items }: any) {
             <ListItemIcon
               sx={{
                 minWidth: 0,
+                marginLeft: "15%",
                 mr: 1,
                 justifyContent: "flex-start",
                 color:
                   expandedMenus.includes(item.menuId) ||
-                  item.menuId === activeMenuId
+                    item.menuId === activeMenuId
                     ? "#FF0000"
                     : "inherit", // Highlight icon for active or expanded menus
               }}
@@ -352,7 +353,7 @@ export default function MiniDrawer({ items }: any) {
               )}
             </ListItemIcon>
             <ListItemText
-              primary={open ? item.menuName : item.menuName.charAt(0)}
+              primary={open ? item.menuName : item.menuName.split(" ").map(word => word[0]).join("")}
               sx={{ textAlign: "start" }}
             />
           </ListItem>
@@ -577,10 +578,10 @@ export default function MiniDrawer({ items }: any) {
 
     const words = text.split(" ");
 
-    
+
     const firstLetters = words.map((word: any) => word.charAt(0));
 
- 
+
     const result = firstLetters.join("");
 
     return <div>{result}</div>;
@@ -703,7 +704,7 @@ export default function MiniDrawer({ items }: any) {
 
     setCheck(newChecked);
 
-    
+
 
     console.log("Checked data:", name);
     console.log("Checked data:", id);
@@ -801,10 +802,9 @@ export default function MiniDrawer({ items }: any) {
             <div style={{ fontFamily: "Georgia, serif" }}>
               <span style={{ fontSize: "3vw", color: "#FFAE35" }}>A</span>
               <span style={{ fontSize: "2.2vw" }}>sset </span>
-              
               <span style={{ fontSize: "3vw", color: "#FFE100" }}>M</span>
               <span style={{ fontSize: "2.2vw" }}>anagement </span>
-              <span style={{ fontSize: "3vw", color: "#e69f9f" }}>S</span>
+              <span style={{ fontSize: "3vw", color: "#e69f99" }}>S</span>
               <span style={{ fontSize: "2.2vw" }}>ystem</span>
             </div>
           </div>
@@ -818,7 +818,7 @@ export default function MiniDrawer({ items }: any) {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 40, height: 40,bgcolor: `var(--header-background)` }}>
+            <Avatar sx={{ width: 40, height: 40, bgcolor: `var(--header-background)` }}>
               {(localStorage.getItem("userid") || "").charAt(0).toUpperCase()}
             </Avatar>
           </IconButton>
@@ -914,9 +914,9 @@ export default function MiniDrawer({ items }: any) {
             <MenuItem
               onClick={() => {
                 let path = "/admin/HelpDesk";
-                
+
                 navigate(path, { state: { activeMenu } })
-                
+
               }}
             >
               <ListItemIcon>
@@ -968,10 +968,10 @@ export default function MiniDrawer({ items }: any) {
           <div
             role="presentation"
             onClick={handleClicked}
-           
+
           >
             <Breadcrumbs aria-label="breadcrumb" sx={{ color: "#fff" }}>
-           
+
               <Typography
                 sx={{
                   display: "flex",
@@ -1229,89 +1229,89 @@ export default function MiniDrawer({ items }: any) {
       </Modal>
 
       <SwipeableDrawer
-  anchor="left"
-  open={profileDrawerOpen}
-  onClose={() => setProfileDrawerOpen(false)}
-  onOpen={() => {}}
-  style={{ zIndex: 1300 }}
->
-  <Box sx={{ width: drawerWidth }} role="presentation">
-    <IconButton
-      edge="end"
-      onClick={() => setProfileDrawerOpen(false)}
-      aria-label="close"
-      sx={{ color: "white", position: "absolute", right: 15, top: 2 }}
-    >
-      <CloseIcon />
-    </IconButton>
-    <p
-      style={{
-        paddingTop: "5vh",
-        paddingBottom: "5vh",
-        textAlign: "center",
-        backgroundImage: "linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)",
-        color: "whitesmoke",
-        borderBottomLeftRadius: "10px",
-        borderBottomRightRadius: "10px",
-        fontSize: "20px",
-      }}
-    >
-      User Details
-    </p>
-
-    {/* User Avatar Section */}
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "10px",
-        marginBottom: "10px",
-        width: "100%",
-      }}
-    >
-      <Avatar
-        sx={{
-          width: "90px",
-          height: "90px",
-          borderRadius: "50%",
-         bgcolor: `var(--header-background)`,
-          //</Box>color: "whitesmoke",
-          fontSize: "20px",
-        }}
+        anchor="left"
+        open={profileDrawerOpen}
+        onClose={() => setProfileDrawerOpen(false)}
+        onOpen={() => { }}
+        style={{ zIndex: 1300 }}
       >
-        {JSON.parse(localStorage.getItem("userDetails") || "{}")?.userid?.charAt(0) || "U"}
-      </Avatar>
-    </Box>
+        <Box sx={{ width: drawerWidth }} role="presentation">
+          <IconButton
+            edge="end"
+            onClick={() => setProfileDrawerOpen(false)}
+            aria-label="close"
+            sx={{ color: "white", position: "absolute", right: 15, top: 2 }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <p
+            style={{
+              paddingTop: "5vh",
+              paddingBottom: "5vh",
+              textAlign: "center",
+              backgroundImage: "linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)",
+              color: "whitesmoke",
+              borderBottomLeftRadius: "10px",
+              borderBottomRightRadius: "10px",
+              fontSize: "20px",
+            }}
+          >
+            User Details
+          </p>
 
-    {/* User Info Section */}
-    <Box sx={{ paddingX: 2 }}>
-      <Divider />
-      <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>User Name:</Typography>
-      <Typography>{JSON.parse(localStorage.getItem("userDetails") || "{}")?.userid || "N/A"}</Typography>
-      <Divider />
-      {/* <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Email:</Typography>
+          {/* User Avatar Section */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "10px",
+              marginBottom: "10px",
+              width: "100%",
+            }}
+          >
+            <Avatar
+              sx={{
+                width: "90px",
+                height: "90px",
+                borderRadius: "50%",
+                bgcolor: `var(--header-background)`,
+                //</Box>color: "whitesmoke",
+                fontSize: "20px",
+              }}
+            >
+              {JSON.parse(localStorage.getItem("userDetails") || "{}")?.userid?.charAt(0) || "U"}
+            </Avatar>
+          </Box>
+
+          {/* User Info Section */}
+          <Box sx={{ paddingX: 2 }}>
+            <Divider />
+            <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>User Name:</Typography>
+            <Typography>{JSON.parse(localStorage.getItem("userDetails") || "{}")?.userid || "N/A"}</Typography>
+            <Divider />
+            {/* <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Email:</Typography>
       <Typography>{"user@example.com"}</Typography>
             <Divider />
 
             <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Phone Number:</Typography>
             <Typography>{"+91 9934566778"}</Typography>
             <Divider /> */}
-      <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Role:</Typography>
-     
-      <Typography>{userRole}</Typography>
-      <Divider />
+            <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Role:</Typography>
 
-      <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Account Status:</Typography>
-      <Typography>
-        {JSON.parse(localStorage.getItem("userDetails") || "{}")?.iS_ACTIVE 
-          ? "Inactive ❌ " 
-          : "Active ✅"}
-      </Typography>
-      <Divider />
-    </Box>
-  </Box>
-</SwipeableDrawer>
+            <Typography>{userRole}</Typography>
+            <Divider />
+
+            <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Account Status:</Typography>
+            <Typography>
+              {JSON.parse(localStorage.getItem("userDetails") || "{}")?.iS_ACTIVE
+                ? "Inactive ❌ "
+                : "Active ✅"}
+            </Typography>
+            <Divider />
+          </Box>
+        </Box>
+      </SwipeableDrawer>
     </Box>
   );
 }
