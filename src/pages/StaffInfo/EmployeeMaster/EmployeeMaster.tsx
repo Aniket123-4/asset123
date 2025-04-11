@@ -131,7 +131,7 @@ const EmployeeMaster = () => {
    const getEmpData = async () => {
       try {
          const collectData = {
-            "Emp_id_1": -1,
+            // "Emp_id_1": -1,
             "EmpImage_38": "any",
             "empsign": "any",
             "EmployeeThumb": "any",
