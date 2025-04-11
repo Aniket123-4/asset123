@@ -1280,7 +1280,7 @@ export default function MiniDrawer({ items }: any) {
                 fontSize: "20px",
               }}
             >
-              {JSON.parse(localStorage.getItem("userDetails") || "{}")?.userid?.charAt(0) || "U"}
+              {JSON.parse(localStorage.getItem("userDetails") || "{}")?.userid?.charAt(0).toUpperCase() || "U"}
             </Avatar>
           </Box>
 
@@ -1290,15 +1290,7 @@ export default function MiniDrawer({ items }: any) {
             <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>User Name:</Typography>
             <Typography>{JSON.parse(localStorage.getItem("userDetails") || "{}")?.userid || "N/A"}</Typography>
             <Divider />
-            {/* <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Email:</Typography>
-      <Typography>{"user@example.com"}</Typography>
-            <Divider />
-
-            <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Phone Number:</Typography>
-            <Typography>{"+91 9934566778"}</Typography>
-            <Divider /> */}
             <Typography sx={{ fontWeight: "bold", marginTop: 1 }}>Role:</Typography>
-
             <Typography>{userRole}</Typography>
             <Divider />
 
