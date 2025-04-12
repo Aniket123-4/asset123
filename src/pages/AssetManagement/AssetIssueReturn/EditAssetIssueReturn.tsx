@@ -220,7 +220,7 @@ const EditAssetIssueReturn = (props: Props) => {
       const response = await api.post(`ResourceIssueReturn`, values);
       if (response.data.success) {
         toast.success(response.data.message || "Added Successful");
-        navigate("/AssetManagement/AssetIssueReturn")
+        navigate("/assetmanagement/assetissue/return")
       } else {
         setToaster(true);
         toast.error(response.data.message);
@@ -587,12 +587,6 @@ const EditAssetIssueReturn = (props: Props) => {
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
-                {/* {formik.touched.fromDate && formik.errors.fromDate ? (
-                  <div style={{ color: "red", margin: "5px" }}>
-                    {formik.errors.fromDate}
-                  </div>
-                ) : null} */}
-
               </Grid>
 
 
@@ -617,149 +611,29 @@ const EditAssetIssueReturn = (props: Props) => {
                   }}
                   InputLabelProps={{ shrink: true }}
                 />
-                {/* {formik.touched.todate && formik.errors.todate ? (
-                  <div style={{ color: "red", margin: "5px" }}>
-                    {formik.errors.todate}
-                  </div>
-                ) : null} */}
-              </Grid>
-
-              {/* <Grid item xs={12} sm={4} lg={4}>
-                <Autocomplete
-                  disablePortal
-                  id="combo-box-demo"
-                  options={option}
-                  fullWidth
-                  size="small"
-                  value={
-                    option.find(
-                      (option: any) => option.value === formik.values.countryId
-                    ) || null
-                  }
-                  onChange={(event, newValue: any) => {
-                    console.log(newValue);
-
-                    formik.setFieldValue("countryId", newValue?.value);
-                    formik.setFieldValue("countryName", newValue?.label);
-
-                    // formik.setFieldTouched("zoneID", true);
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label={
-                        <CustomLabel
-                          text={t("text.SelectStudentName")}
-                          required={requiredFields.includes("countryName")}
-                        />
-                      }
-                    />
-                  )}
-                />
-                {formik.touched.countryId && formik.errors.countryId ? (
-                  <div style={{ color: "red", margin: "5px" }}>
-                    {formik.errors.countryId}
-                  </div>
-                ) : null}
-              </Grid> */}
-
-              <Grid item xs={12} sm={4} lg={4}>
-                {/* {(reportedByType === "Student" || reportedByType === "Staff") && (
-                  <Autocomplete
-                    disablePortal
-                    id={`${reportedByType.toLowerCase()}-dropdown`}
-                    options={reportedByType === "Student" ? studentList : staffList}
-                    fullWidth
-                    size="small"
-                    value={formik.values.empname}
-                    // value={(reportedByType === "Student" ? studentList : staffList).find(
-                    //   (option: any) => option.label === formik.values.empname // FIND by label (name)
-                    // ) || null}
-                    onChange={(event, newValue: any) => {
-                      formik.setFieldValue("empname", newValue?.name || ""); // Store internally
-                    }}
-                    renderInput={(params) => (
-                      <TextField {...params} label={<CustomLabel text={`Select ${reportedByType} Name`} required={false} />} />
-                    )}
-                  />
-                )} */}
-
-                {/* {reportedByType === "Student" && (
-                  <TextField
-                    label={
-                      <CustomLabel
-                        text={t("text.StudentName")}
-                        required={true}
-                      />
-                    }
-                    variant="outlined"
-                    fullWidth
-                    size="small"
-                    name="fromDate"
-                    id="fromDate"
-                    //value={formik.values.fromDate}
-                    placeholder={t("text.StudentName")}
-                    onChange={(e) => {
-                      formik.setFieldValue("fromDate", e.target.value);
-                    }}
-                  />
-                )}
-
-                {reportedByType === "Staff" && (
-                  <TextField
-                    label={
-                      <CustomLabel
-                        text={t("text.StaffName")}
-                        required={true}
-                      />
-                    }
-                    variant="outlined"
-                    fullWidth
-                    size="small"
-                    name="fromDate"
-                    id="fromDate"
-                    //value={formik.values.fromDate}
-                    placeholder={t("text.StaffName")}
-                    onChange={(e) => {
-                      formik.setFieldValue("StaffName", e.target.value);
-                    }}
-                  />
-                )}
-
-                {reportedByType === "Visitor" && (
-                  <TextField
-                    label={
-                      <CustomLabel
-                        text={t("text.VisitorName")}
-                        required={true}
-                      />
-                    }
-                    variant="outlined"
-                    fullWidth
-                    size="small"
-                    name="fromDate"
-                    id="fromDate"
-                    //value={formik.values.fromDate}
-                    placeholder={t("text.VisitorName")}
-                    onChange={(e) => {
-                      formik.setFieldValue("fromDate", e.target.value);
-                    }}
-                  />
-                )} */}
 
               </Grid>
-
-
-
 
 
               <Grid item xs={12} sm={12} lg={12}>
-                <TranslateTextField
+                {/* <TranslateTextField
                   label={t("text.EnterRemark")}
                   value={formik.values.remark}
                   onChangeText={(text: string) => formik.setFieldValue("remark", text)}
                   required={false}
                   lang={lang}
+                 
+                /> */}
+                <TextField
+                  label={t("text.EnterRemark")}
+                  value={formik.values.remark}
+                  onChange={(event) => formik.setFieldValue("remark", event.target.value)}
+                  fullWidth
+                  variant="outlined"
+                
+                  size="small"
+             
+                  InputLabelProps={{ shrink: true }}
                 />
 
               </Grid>

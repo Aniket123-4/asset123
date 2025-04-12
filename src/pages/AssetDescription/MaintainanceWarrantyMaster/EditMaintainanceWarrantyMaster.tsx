@@ -601,23 +601,46 @@ const EditMaintainanceWarrantyMaster = (props: Props) => {
               </Grid>
 
               <Grid item xs={12} sm={4} lg={4}>
-                <TranslateTextField
+                {/* <TranslateTextField
                   label={t("text.EnterValue")}
                   value={formik.values.WarrentyValue}
                   onChangeText={(text: string) => formik.setFieldValue("WarrentyValue", text)}
                   required={false}
                   lang={lang}
+                /> */}
+
+<TextField
+                  label={t("text.EnterRemark")}
+                  value={formik.values.WarrentyValue}
+                  onChange={(event) => formik.setFieldValue("WarrentyValue", event.target.value)}
+                  fullWidth
+                  variant="outlined"
+                
+                  size="small"
+             
+                  InputLabelProps={{ shrink: true }}
                 />
 
               </Grid>
               {/* remark */}
               <Grid item xs={12} sm={4} lg={4}>
-                <TranslateTextField
+                {/* <TranslateTextField
                   label={t("text.EnterRemark")}
                   value={formik.values.WarrentyRemark}
                   onChangeText={(text: string) => formik.setFieldValue("WarrentyRemark", text)}
                   required={false}
                   lang={lang}
+                /> */}
+                 <TextField
+                  label={t("text.EnterRemark")}
+                  value={formik.values.WarrentyRemark}
+                  onChange={(event) => formik.setFieldValue("WarrentyRemark", event.target.value)}
+                  fullWidth
+                  variant="outlined"
+                
+                  size="small"
+             
+                  InputLabelProps={{ shrink: true }}
                 />
 
               </Grid>

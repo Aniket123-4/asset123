@@ -210,7 +210,7 @@ export default function AssetDetail() {
     },
 
     validationSchema: Yup.object({
-      ResourceName: Yup.number().required(t("text.reqResourceName")),
+      ResourceName: Yup.string().required(t("text.reqResourceName")),
       DepriciationRate: Yup.number().required(t("text.reqDepreciationRate")),
     }),
 

@@ -109,7 +109,7 @@ const EditUtilizationLog = (props: Props) => {
     if (location.state?.UserType) {
       setReportedByType(location.state.UserType); // Set reportedByType
     }
-  
+
     // Fetch dropdown data if needed
     if (location.state?.UserType === "Student") {
       getStudentList();
@@ -120,7 +120,7 @@ const EditUtilizationLog = (props: Props) => {
     }
     fetchAssets();
   }, [location.state]);
-  
+
 
   const fetchEmployeeDetail = async (type: any) => {
     try {
@@ -340,15 +340,15 @@ const EditUtilizationLog = (props: Props) => {
                   }}
                   renderInput={(params) => (
                     <TextField
-                                            {...params}
-                                            label={
-                                                <CustomLabel
-                                                    text={t("text.SelectAssetcode")}
-                                                    required={true}
-                                                />
-                                            }
+                      {...params}
+                      label={
+                        <CustomLabel
+                          text={t("text.SelectAssetcode")}
+                          required={true}
+                        />
+                      }
 
-                                        />
+                    />
                   )}
                 />
               </Grid>
@@ -429,7 +429,6 @@ const EditUtilizationLog = (props: Props) => {
                     )}
                   />
                 )}
-
 
                 {reportedByType === "Student" && (
                   <Autocomplete
@@ -573,12 +572,18 @@ const EditUtilizationLog = (props: Props) => {
 
               {/* remark */}
               <Grid item xs={12} sm={4} lg={4}>
-                <TranslateTextField
+
+
+                <TextField
                   label={t("text.EnterRemark")}
                   value={formik.values.Remark}
-                  onChangeText={(text: any) => formik.setFieldValue("Remark", text)}
-                  required={false}
-                  lang={lang}
+                  onChange={(event) => formik.setFieldValue("Remark", event.target.value)}
+                  fullWidth
+                  variant="outlined"
+
+                  size="small"
+
+                  InputLabelProps={{ shrink: true }}
                 />
               </Grid>
 

@@ -215,7 +215,7 @@ export default function LicensingInsuranceMaster() {
                     onClick={() => routeChangeEdit(params.row)}
                   />
                 
-                  <DeleteIcon
+                  {/* <DeleteIcon
                     style={{
                       fontSize: "20px",
                       color: "red",
@@ -224,7 +224,7 @@ export default function LicensingInsuranceMaster() {
                     onClick={() => {
                       handledeleteClick(params.row.id);
                     }}
-                  />
+                  /> */}
                   <VisibilityIcon
                     style={{
                       fontSize: "20px",
