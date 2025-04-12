@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
+import api from "../../../utils/Url";
 
 const ChangePassword = () => {
   const { t } = useTranslation();
@@ -50,8 +51,8 @@ const ChangePassword = () => {
     // }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/ChangePassword/",
+      const response = await api.post(
+        "ChangePassword",
         formData,
         {
           // headers: {
