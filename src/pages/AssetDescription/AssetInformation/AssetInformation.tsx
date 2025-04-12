@@ -631,7 +631,7 @@ export default function AssetInformation() {
                   value={formik.values.DepriciationRate}
                   placeholder={t("text.EnterDepreciatedRate")}
                   onChange={(e) => {
-                    formik.setFieldValue("DepriciationRate", parseInt(e.target.value));
+                    formik.setFieldValue("DepriciationRate", parseInt(e.target.value || "0"));
                   }}
                 />
 

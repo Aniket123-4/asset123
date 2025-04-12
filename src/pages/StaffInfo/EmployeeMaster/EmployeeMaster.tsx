@@ -451,12 +451,14 @@ const EmployeeMaster = () => {
             setToaster(true);
             console.error("Error:", error);
             toast.error("An error occurred. Please try again.");
+            window.location.reload();
          }
       },
    });
 
    const handleSubmitWrapper = async () => {
       await formik.handleSubmit();
+      // window.location.reload();
    };
 
 

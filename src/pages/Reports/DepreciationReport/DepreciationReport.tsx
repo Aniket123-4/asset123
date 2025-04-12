@@ -389,7 +389,7 @@ export default function DepreciationReport() {
                         startIcon={<RefreshIcon />}
                         onClick={() => {
                            formik.resetForm();
-
+                           fetchZonesData("");
                         }}
                      >
                         {t("text.reset")}

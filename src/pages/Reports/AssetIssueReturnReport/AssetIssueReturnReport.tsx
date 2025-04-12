@@ -613,6 +613,7 @@ export default function AssetIssueReturnReport() {
                         onClick={() => {
                            formik.resetForm();
                            setReportType("both");
+                           fetchZonesData();
                         }}
                      >
                         {t("text.reset")}

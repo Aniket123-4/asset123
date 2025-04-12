@@ -1195,7 +1195,7 @@ export default function AssetDynamicReport() {
               </Button>
             </Grid>
 
-            <Grid item lg={4} md={4} sm={4} xs={12}>
+            {/* <Grid item lg={4} md={4} sm={4} xs={12}>
               <Button
                 type="button"
                 fullWidth
@@ -1212,7 +1212,7 @@ export default function AssetDynamicReport() {
               >
                 {t("text.reset")}
               </Button>
-            </Grid>
+            </Grid> */}
 
             <Grid item lg={4} md={4} sm={4} xs={12}>
               <Button
