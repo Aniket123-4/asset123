@@ -9497,6 +9497,9 @@ const resources = {
         Update: "Update",
         Master: "Master",
         Slave: "Slave",
+        requserid:"Username is required",
+        reqpassword:"Password is required",
+
       },
 
       content: {},
@@ -14243,6 +14246,8 @@ const resources = {
         Update: "अपडेट करें",
         Master: "मास्टर",
         Slave: "स्लेव",
+        requserid:"उपयोगकर्ता नाम आवश्यक है",
+        reqpassword:"पासवर्ड आवश्यक है",
       },
 
       content: {},

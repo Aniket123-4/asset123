@@ -346,7 +346,7 @@ export default function Status() {
 
           formik.setValues({
             id_St: status.Status_ID,
-            StatusDate: status.StatusDate,
+            StatusDate: formatDate(status.StatusDate),
             Status: status.Status,
             StatusRemark: status.StatusRemark,
             inst: status.inst_id,
@@ -508,9 +508,10 @@ export default function Status() {
                   options={assetCodeOptions}
                   fullWidth
                   size="small"
-                  value={
-                    assetCodeOptions.find((option: any) => option.ResourceCode === formik.values.AssetCode) || null
-                  }
+                  // value={
+                  //   assetCodeOptions.find((option: any) => option.ResourceCode == formik.values.AssetCode) || null
+                  // }
+                  value={formik.values.AssetCode}
                   onChange={(event, newValue: any) => {
                     console.log("Selected Value: ", newValue);
                     formik.setFieldValue("AssetCode", newValue?.ResourceCode || "");
@@ -573,8 +574,8 @@ export default function Status() {
                 <Autocomplete
                   disablePortal
                   id="combo-box-demo"
-                  options={CanBeUsedOption
-                  }
+                  options={CanBeUsedOption}
+                  value={formik.values.Status}
                   fullWidth
                   size="small"
                   onChange={(event: any, newValue: any) => {
@@ -822,3 +823,8 @@ export default function Status() {
     </>
   );
 }
+
+function moment(StatusDate: any) {
+  throw new Error("Function not implemented.");
+}
+
