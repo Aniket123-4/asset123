@@ -507,7 +507,7 @@ const EditAssetIssueReturn = (props: Props) => {
 
 
               <Grid item xs={12} sm={4} lg={4}>
-                {(reportedByType === "Staff") && (
+                {(reportedByType === "Staff" || formik.values.membertype === "Staff") && (
                   <Autocomplete
                     disablePortal
                     id={`${reportedByType.toLowerCase()}-dropdown`}
@@ -524,7 +524,7 @@ const EditAssetIssueReturn = (props: Props) => {
                     )}
                   />
                 )}
-                {reportedByType === "Student" && (
+                {(reportedByType === "Student" || formik.values.membertype === "Student") && (
                   <Autocomplete
                     disablePortal
                     id="student-dropdown"
@@ -544,7 +544,7 @@ const EditAssetIssueReturn = (props: Props) => {
 
 
                 {/* ✅ Add visitor section here */}
-                {reportedByType === "Visitor" && (
+                {(reportedByType === "Visitor" || formik.values.membertype === "Visitor") && (
                   <Autocomplete
                     disablePortal
                     id="visitor-dropdown"
@@ -630,9 +630,9 @@ const EditAssetIssueReturn = (props: Props) => {
                   onChange={(event) => formik.setFieldValue("remark", event.target.value)}
                   fullWidth
                   variant="outlined"
-                
+
                   size="small"
-             
+
                   InputLabelProps={{ shrink: true }}
                 />
 

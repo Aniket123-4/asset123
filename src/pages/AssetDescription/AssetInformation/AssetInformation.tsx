@@ -228,7 +228,7 @@ export default function AssetInformation() {
 
         setEditId(0);
       } else {
-        toast.error(response.data.message);
+        toast.success(response.data.message);
       }
     },
   });
