@@ -13,6 +13,8 @@ const resources = {
       error: {},
       message: {},
       text: {
+
+        PagetitleRequired:"Page Title is Required",
         SelectMajorGroup: "Select Major Group",
         SelectEmployee: "Select Employee",
         MultipleRoles: "Multiple Roles",
@@ -9511,6 +9513,24 @@ const resources = {
       error: {},
       message: {},
       text: {
+        AssetGeoLocationReport:"संपत्ति भू-स्थान रिपोर्ट",
+        Both: "दोनों",
+         //LocationMaster
+         LocationMaster: "स्थान मास्टर",
+         LocName: "स्थान का नाम",
+         LocAbb: "स्थान का संक्षिप्त नाम",
+         Lattitude: "लैटिट्यूड",
+         enterlongitude: "लॉन्गिट्यूड दर्ज करें",
+         Longitude: "लॉन्गिट्यूड",
+         enterlattitude: "लैटिट्यूड दर्ज करें",
+         enterLocationSHORTNAME: "स्थान का संक्षिप्त नाम दर्ज करें",
+         enterLocationName: "स्थान का नाम दर्ज करें",
+         
+        CityName:"शहर का नाम",
+        EnterCityName: "शहर का नाम दर्ज करें",
+        EnterCityShortName:"शहर का संक्षिप्त नाम दर्ज करें",
+        CityMaster:"शहर मास्टर",
+        PagetitleRequired:"पृष्ठ शीर्षक आवश्यक है",
         UserCreation: "उपयोगकर्ता निर्माण",
         SelectMajorGroup: "मुख्य समूह चुनें",
         SelectEmployee: "कर्मचारी चुनें",
