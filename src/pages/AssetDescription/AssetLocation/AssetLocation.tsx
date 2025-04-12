@@ -153,22 +153,7 @@ export default function AssetLocation() {
         });
     }
 
-    // const validationSchema = Yup.object({
-    //     countryId: Yup.string().test(
-    //         "required",
-    //         t("text.reqcountryName"),
-    //         function (value: any) {
-    //             return value && value.trim() !== "";
-    //         }
-    //     ),
-    //     stateName: Yup.string().test(
-    //         "required",
-    //         t("text.reqstateName"),
-    //         function (value: any) {
-    //             return value && value.trim() !== "";
-    //         }
-    //     ),
-    // });
+   
 
     const formik = useFormik({
         initialValues: {
@@ -330,90 +315,6 @@ export default function AssetLocation() {
 
 
 
-    // const fetchZonesData = async () => {
-    //     try {
-    //         const collectData = {
-    //             Id: "",
-    //             Asset_Id: "",
-    //             Location_Id: "",
-    //             Description: "",
-    //             Asset_Type: "",
-    //             Location_Date: defaultValues,
-    //             Inst_Id: "",
-    //             User_Id: "",
-    //             divisionid: "",
-    //             Type: 4
-    //         };
-    //         const response = await api.post(`AssetLocation`, collectData);
-    //         const data = response.data.data;
-    //         const zonesWithIds = data.map((zone: any, index: any) => ({
-    //             ...zone,
-    //             serialNo: index + 1,
-    //             id: zone.Id,
-    //         }));
-    //         setZones(zonesWithIds);
-    //         setIsLoading(false);
-
-    //         if (data.length > 0) {
-    //             const columns: GridColDef[] = [
-    //                 {
-    //                     field: "actions",
-    //                     headerClassName: "MuiDataGrid-colCell",
-    //                     headerName: t("text.Action"),
-    //                     width: 150,
-
-    //                     renderCell: (params) => {
-    //                         return [
-    //                             <Stack
-    //                                 spacing={1}
-    //                                 direction="row"
-    //                                 sx={{ alignItems: "center", marginTop: "5px" }}
-    //                             >
-    //                                 {/* {permissionData?.isEdit ? ( */}
-    //                                 <EditIcon
-    //                                     style={{
-    //                                         fontSize: "20px",
-    //                                         color: "blue",
-    //                                         cursor: "pointer",
-    //                                     }}
-    //                                     className="cursor-pointer"
-    //                                     onClick={() => routeChangeEdit(params.row)}
-    //                                 />
-
-    //                             </Stack>,
-    //                         ];
-    //                     },
-    //                 },
-
-    //                 {
-    //                     field: "serialNo",
-    //                     headerName: t("text.SrNo"),
-    //                     flex: 1,
-    //                     headerClassName: "MuiDataGrid-colCell",
-    //                 },
-    //                 {
-    //                     field: "Asset_Id",
-    //                     headerName: t("text.AssetCode"),
-    //                     flex: 1,
-    //                     headerClassName: "MuiDataGrid-colCell",
-    //                 },
-
-    //                 {
-    //                     field: "Description",
-    //                     headerName: t("text.Description"),
-    //                     flex: 1,
-    //                     headerClassName: "MuiDataGrid-colCell",
-    //                 },
-
-
-    //             ];
-    //             setColumns(columns as any);
-    //         }
-    //     } catch (error) {
-    //         console.error("Error fetching data:", error);
-    //         // setLoading(false);
-    //     }
-    // };
 
     const adjustedColumns = columns.map((column: any) => ({
         ...column,
@@ -540,7 +441,7 @@ export default function AssetLocation() {
                                     options={locationOption}
                                     fullWidth
                                     size="small"
-                                    value={locationOption.find((o: any) => o.value === formik.values.Location_Id) || null}
+                                    value={locationOption.find((o: any) => o.value == formik.values.Location_Id) || null}
                                     onChange={(event, newValue) => {
                                         formik.setFieldValue("Location_Id", newValue?.value || "");
                                     }}
