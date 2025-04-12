@@ -172,16 +172,7 @@ export default function UtilizationLog() {
                   {/* "" */}
                   {/* )} */}
                   {/* {permissionData?.isDel ? ( */}
-                  <DeleteIcon
-                    style={{
-                      fontSize: "20px",
-                      color: "red",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      handledeleteClick(params.row.id);
-                    }}
-                  />
+                 
                  
                 </Stack>,
               ];

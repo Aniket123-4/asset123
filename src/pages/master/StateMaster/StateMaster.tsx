@@ -223,21 +223,21 @@ export default function StateMaster() {
   
       if (statesData.length > 0) {
         const columns: GridColDef[] = [
-          {
-            field: "actions",
-            headerClassName: "MuiDataGrid-colCell",
-            headerName: t("text.Action"),
-            width: 150,
-            renderCell: (params) => (
-              <Stack spacing={1} direction="row" sx={{ alignItems: "center", marginTop: "5px" }}>
-                <EditIcon
-                  style={{ fontSize: "20px", color: "blue", cursor: "pointer" }}
-                  className="cursor-pointer"
-                  onClick={() => routeChangeEdit(params.row)}
-                />
-              </Stack>
-            ),
-          },
+          // {
+          //   field: "actions",
+          //   headerClassName: "MuiDataGrid-colCell",
+          //   headerName: t("text.Action"),
+          //   width: 150,
+          //   renderCell: (params) => (
+          //     <Stack spacing={1} direction="row" sx={{ alignItems: "center", marginTop: "5px" }}>
+          //       <EditIcon
+          //         style={{ fontSize: "20px", color: "blue", cursor: "pointer" }}
+          //         className="cursor-pointer"
+          //         onClick={() => routeChangeEdit(params.row)}
+          //       />
+          //     </Stack>
+          //   ),
+          // },
           {
             field: "serialNo",
             headerName: t("text.SrNo"),

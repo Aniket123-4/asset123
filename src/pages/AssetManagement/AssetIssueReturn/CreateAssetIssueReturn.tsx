@@ -217,7 +217,7 @@ const CreateAssetIssueReturn = (props: Props) => {
       const response = await api.post(`ResourceIssueReturn`, values);
       if (response.data.success) {
         toast.success(response.data.message || "Added Successful");
-        navigate("/AssetManagement/AssetIssueReturn")
+        navigate("/assetmanagement/assetissue/return")
       } else {
         setToaster(true);
         toast.error(response.data.message);

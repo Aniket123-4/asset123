@@ -511,12 +511,24 @@ const EditLicensingInsuranceMaster = (props: Props) => {
 
               {/* narration */}
               <Grid item xs={12} sm={4} lg={4}>
-                <TranslateTextField
+                {/* <TranslateTextField
                   label={t("text.EnterNarration")}
                   value={formik.values.NarrationLic}
                   onChangeText={(text: string) => formik.setFieldValue("NarrationLic", text)}
                   required={false}
                   lang={lang}
+                /> */}
+
+<TextField
+                  label={t("text.EnterNarration")}
+                  value={formik.values.NarrationLic}
+                  onChange={(event) => formik.setFieldValue("NarrationLic", event.target.value)}
+                  fullWidth
+                  variant="outlined"
+                
+                  size="small"
+             
+                  InputLabelProps={{ shrink: true }}
                 />
 
               </Grid>
