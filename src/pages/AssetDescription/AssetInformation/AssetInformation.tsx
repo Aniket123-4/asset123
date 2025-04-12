@@ -344,7 +344,7 @@ export default function AssetInformation() {
                     ""
                   )} */}
                   {/* {permissionData?.isDel ? ( */}
-                  <DeleteIcon
+                  {/* <DeleteIcon
                     style={{
                       fontSize: "20px",
                       color: "red",
@@ -353,7 +353,7 @@ export default function AssetInformation() {
                     onClick={() => {
                       handledeleteClick(params.row.id);
                     }}
-                  />
+                  /> */}
                   {/* ) : (
                     ""
                   )} */}
