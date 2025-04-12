@@ -5,9 +5,9 @@ import { toast } from 'react-toastify';
 
  //export const HOST_URL = 'http://103.20.215.109/plesk-site-preview/assetnodeapi.mssplonline.com/';
 
-export const HOST_URL = 'http://localhost:5000/';
+// export const HOST_URL = 'http://localhost:5000/';
 
-//export const HOST_URL = 'https://assetnodeapi.mssplonline.com/';
+export const HOST_URL = 'https://assetnodeapi.mssplonline.com/';
 
 
 

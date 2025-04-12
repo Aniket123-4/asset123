@@ -165,6 +165,10 @@ export default function BulkAssetDetail() {
     },
   });
 
+  useEffect(()=>{
+    getAssetCode();
+  },[formik.values.totalqty]);
+
 
   const routeChangeEdit = (row: any) => {
 
@@ -472,9 +476,9 @@ export default function BulkAssetDetail() {
                   value={formik.values.totalqty}
                   placeholder={t("text.EnterTotalQuantity")}
                   onChange={(e) => {
-                    formik.setFieldValue("totalqty", parseInt(e.target.value));
-                    setIsVisible(true);
+                    formik.setFieldValue("totalqty", parseInt(e.target.value || "0"));
                     getAssetCode();
+                    setIsVisible(true);
                   }}
                 />
 

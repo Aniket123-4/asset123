@@ -726,32 +726,34 @@ export default function Status() {
 
 
               <Grid item xs={12} sm={4} lg={4}>
-                {(reportedByType === "Staff") && (
+                {(reportedByType === "Staff" || formik.values.reportedby === "Staff") && (
                   <Autocomplete
                     disablePortal
                     id={`${reportedByType.toLowerCase()}-dropdown`}
                     options={reportedByType === "Staff" ? staffList : staffList}
                     fullWidth
                     size="small"
-                    value={(reportedByType === "Staff" ? staffList : staffList).find(
-                      (option: any) => option.label === formik.values.name
-                    ) || null}
+                    // value={(reportedByType === "Staff" ? staffList : staffList).find(
+                    //   (option: any) => option.label == formik.values.name
+                    // ) || null}
+                    value={formik.values.name}
                     onChange={(event, newValue: any) => {
                       formik.setFieldValue("name", newValue?.label || ""); // Store name
                     }}
                     renderInput={(params) => (
-                      <TextField {...params} label={<CustomLabel text={`Select ${reportedByType}`} required={false} />} />
+                      <TextField {...params} label={<CustomLabel text={`Select Staff`} required={false} />} />
                     )}
                   />
                 )}
-                {reportedByType === "Student" && (
+                {(reportedByType === "Student" || formik.values.reportedby === "Student") && (
                   <Autocomplete
                     disablePortal
                     id="student-dropdown"
                     options={studentList}
                     fullWidth
                     size="small"
-                    value={studentList.find((option: any) => option.label === formik.values.name) || null}
+                    // value={studentList.find((option: any) => option.label == formik.values.name) || null}
+                    value={formik.values.name}
                     onChange={(event, newValue: any) => {
                       formik.setFieldValue("name", newValue?.label || ""); // Store student name
                     }}
@@ -763,14 +765,15 @@ export default function Status() {
 
 
                 {/* ✅ Add visitor section here */}
-                {reportedByType === "Visitor" && (
+                {(reportedByType === "Visitor" || formik.values.reportedby === "Visitor") && (
                   <Autocomplete
                     disablePortal
                     id="visitor-dropdown"
                     options={visitorList}
                     fullWidth
                     size="small"
-                    value={visitorList.find((option: any) => option.label === formik.values.name) || null}
+                    // value={visitorList.find((option: any) => option.label == formik.values.name) || null}
+                    value={formik.values.name}
                     onChange={(event, newValue: any) => {
                       formik.setFieldValue("name", newValue?.label || ""); // Store visitor name
                     }}
